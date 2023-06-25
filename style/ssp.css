@@ -15,6 +15,9 @@ button{
     outline: 0;
     border: 0;
 }
+button:focus:not(){
+    
+}
 
 body{
     background-color: #ffb178 !important;

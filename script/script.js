@@ -23,7 +23,7 @@ let ItemHistori
 
 
 let HistoriOperation = []
-let ObjResult
+var ObjResult
 
 
 Theme.addEventListener('click' , DarkOrLight)
@@ -48,7 +48,7 @@ function localHistori (one , two){
 
 BtnNumber.forEach((BtnNum) =>{
     
-    BtnNum.addEventListener('click' , function (){
+    BtnNum.addEventListener('mousedown' , function (){
         ValueOperation = BtnNum.value
         if (NumerOperation.innerHTML == 0){
             NumerOperation.innerHTML = ValueOperation
@@ -60,23 +60,27 @@ BtnNumber.forEach((BtnNum) =>{
 
 
 ButtonOperation.forEach((opera) => {
-    opera.addEventListener('click' , function (){
-        var MaxLength = NumerOperation.innerHTML.length - 1
-        if (NumerOperation.innerHTML[MaxLength] == "+" || NumerOperation.innerHTML[MaxLength] == "-" || NumerOperation.innerHTML[MaxLength] == "*" || NumerOperation.innerHTML[MaxLength] == "/" || NumerOperation.innerHTML[MaxLength] == "%"){
-            NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
-            NumerOperation.innerHTML += opera.value
-            return false
-        }else if (NumerOperation.innerHTML == 0) {
-            return false
-        }else{
-            NumerOperation.innerHTML += opera.value
-        }
+    opera.addEventListener('mousedown' , function (){
+        OperationMethod(opera.value)
     })
 })
 
+function OperationMethod (Opera){
+    var MaxLength = NumerOperation.innerHTML.length - 1
+    if (NumerOperation.innerHTML[MaxLength] == "+" || NumerOperation.innerHTML[MaxLength] == "-" || NumerOperation.innerHTML[MaxLength] == "*" || NumerOperation.innerHTML[MaxLength] == "/" || NumerOperation.innerHTML[MaxLength] == "%"){
+        NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
+        NumerOperation.innerHTML += Opera
+        return false
+    }else if (NumerOperation.innerHTML == 0) {
+        return false
+    }else{
+        NumerOperation.innerHTML += Opera
+    }
+}
 
-ButtonAllClear.addEventListener('click' , function (){
-    if (NumerOperation.innerHTML == "0" || BoxDropOrClose == true){
+
+ButtonAllClear.addEventListener('mousedown' , function (){
+    if (NumerOperation.innerHTML == "0"){
       
     }else {
         NumerOperation.innerHTML = '0'
@@ -86,7 +90,7 @@ ButtonAllClear.addEventListener('click' , function (){
     }
 })
 
-ButtonBackSpace.addEventListener('click' , BacSpaceOperation)
+ButtonBackSpace.addEventListener('mousedown' , BacSpaceOperation)
 
 function BacSpaceOperation (){
     if (NumerOperation.innerHTML.length == 1){
@@ -102,7 +106,6 @@ function OperationResult (){
     var InptClcMaxlength = NumerOperation.innerHTML.length - 1
     if (NumerOperation.innerHTML[InptClcMaxlength] == "+" || NumerOperation.innerHTML[InptClcMaxlength] == "-" || NumerOperation.innerHTML[InptClcMaxlength] == "*" || NumerOperation.innerHTML[InptClcMaxlength] == "/" || NumerOperation.innerHTML[InptClcMaxlength] == "%"){
         return false
-    
     }else if ( testoperation('-') == -1 && testoperation('+') == -1 && testoperation('*') == -1 && testoperation('/') == -1   ) {
         return false
     } else if (NumerOperation.innerHTML == "0"){
@@ -122,9 +125,10 @@ function OperationResult (){
     }
 }
 
-const testoperation = (opera) => {
+function testoperation(opera){
     return NumerOperation.innerHTML.indexOf(opera) 
-}
+} 
+
 
 document.body.addEventListener('keyup' , function (event) {
     switch (event.key){
@@ -158,24 +162,26 @@ document.body.addEventListener('keyup' , function (event) {
         case '0':
             addKeyValue(event.key)
             break;
-        
         case '-':
-            addKeyValueOpera(event.key)
+            OperationMethod(event.key)
             break;
         case '+':
-            addKeyValueOpera(event.key)
+            OperationMethod(event.key)
             break;
         case '%':
-            addKeyValueOpera(event.key)
+            OperationMethod(event.key)
             break;
         case '*':
-            addKeyValueOpera(event.key)
+            OperationMethod(event.key)
+            break;
+        case '/':
+            OperationMethod(event.key)
             break;
         case '=':
-                OperationResult()
+            OperationResultKeyboard()
             break;
         case 'Enter':
-            OperationResult()
+            OperationResultKeyboard()
             break;
         case 'Backspace':
             BacSpaceOperation()
@@ -190,16 +196,27 @@ function addKeyValue (numAdd){
         NumerOperation.innerHTML += numAdd
     }
 }
-function addKeyValueOpera (OperaAdd){
-    var MaxLength = NumerOperation.innerHTML.length - 1
-    if (NumerOperation.innerHTML[MaxLength] == "+" || NumerOperation.innerHTML[MaxLength] == "-" || NumerOperation.innerHTML[MaxLength] == "*" || NumerOperation.innerHTML[MaxLength] == "/" || NumerOperation.innerHTML[MaxLength] == "%"){
-        NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
-        NumerOperation.innerHTML += OperaAdd
+
+function OperationResultKeyboard (){
+    var InptClcMaxlength = NumerOperation.innerHTML.length - 1
+    if (NumerOperation.innerHTML[InptClcMaxlength] == "+" || NumerOperation.innerHTML[InptClcMaxlength] == "-" || NumerOperation.innerHTML[InptClcMaxlength] == "*" || NumerOperation.innerHTML[InptClcMaxlength] == "/" || NumerOperation.innerHTML[InptClcMaxlength] == "%"){
         return false
-    }else if (NumerOperation.innerHTML == 0) {
+    }else if ( testoperation('-') == -1 && testoperation('+') == -1 && testoperation('*') == -1 && testoperation('/') == -1 ) {
         return false
-    }else {
-        NumerOperation.innerHTML += OperaAdd
+    } else if (NumerOperation.innerHTML == "0"){
+        NumerOperation.innerHTML = ""
+        return false
+    } else {
+        ResultNumber.innerHTML = eval(NumerOperation.innerHTML)
+        ObjResult = {
+            Result : ResultNumber.innerHTML ,
+            Operation :  NumerOperation.innerHTML , 
+        }
+        HistoriOperation.push(ObjResult)
+        localHistori('historiCalculator' , HistoriOperation)
+        NumerOperation.innerHTML = ResultNumber.innerHTML
+        AddItemHistori()
+        AddItemHIstoriPhone()
     }
 }
 
@@ -283,7 +300,7 @@ function AddItemHistori () {
     CreateDivNum.style.opacity = '0'
     setTimeout(function (){
         CreateDivNum.style.opacity = '1'
-    } , 600)
+    } , 300)
     createDivHome.append(CreateDivNum)
     
     CreateDivImage = $.createElement('div')
@@ -291,7 +308,7 @@ function AddItemHistori () {
     CreateDivImage.style.opacity = '0'
     setTimeout(function (){
         CreateDivImage.style.opacity = '1'
-    } , 600)
+    } , 300)
     createDivHome.append(CreateDivImage)
     
     CreateDivResult = $.createElement('div')
@@ -561,22 +578,22 @@ function ClearlocalHistori (){
             if (localStorage.getItem("ThemeCalculator") == 'Dark'){
                 var itemhistoriModalmmdark = $.querySelectorAll('.ItemHistoriPhoneDark')
                 itemhistoriModalmmdark.forEach(function (dark){
-                    dark.style.display = 'none'
+                    dark.remove()
                 })
     
                 var itemRemoveHistori = $.querySelectorAll('.HistoriItemDark')
                 itemRemoveHistori.forEach(function (item){
-                    item.style.display = 'none'
+                    item.remove()
                 })
             }else {
                 var itemhistoriModalmm = $.querySelectorAll('.ItemHistoriPhone')
                 itemhistoriModalmm.forEach(function (dark){
-                    dark.style.display = 'none'
+                    dark.remove()
                 })
     
                 var itemRemoveHistori = $.querySelectorAll('.HistoriItem')
                 itemRemoveHistori.forEach(function (item){
-                    item.style.display = 'none'
+                    item.remove()
                 })
         
             }
@@ -692,7 +709,6 @@ function AddItemHIstoriPhone (){
             event.target.parentElement.parentElement.style.opacity = '0'
             var bff = event.target.parentElement.parentElement
             setTimeout(function (){
-        
                 bff.remove()
             } , 500)
             if (HistoriOperation.length == '0'){

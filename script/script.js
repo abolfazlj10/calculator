@@ -66,7 +66,9 @@ ButtonOperation.forEach((opera) => {
             NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
             NumerOperation.innerHTML += opera.value
             return false
-        }else {
+        }else if (NumerOperation.innerHTML == 0) {
+            return false
+        }else{
             NumerOperation.innerHTML += opera.value
         }
     })
@@ -84,16 +86,19 @@ ButtonAllClear.addEventListener('click' , function (){
     }
 })
 
-ButtonBackSpace.addEventListener('click' , function (){
+ButtonBackSpace.addEventListener('click' , BacSpaceOperation)
+
+function BacSpaceOperation (){
     if (NumerOperation.innerHTML.length == 1){
         NumerOperation.innerHTML = '0'
     }else {
         NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
     }
-    
-})
+}
 
-ButtonResult.addEventListener('click' , function (){
+ButtonResult.addEventListener('click' , OperationResult)
+
+function OperationResult (){
     var InptClcMaxlength = NumerOperation.innerHTML.length - 1
     if (NumerOperation.innerHTML[InptClcMaxlength] == "+" || NumerOperation.innerHTML[InptClcMaxlength] == "-" || NumerOperation.innerHTML[InptClcMaxlength] == "*" || NumerOperation.innerHTML[InptClcMaxlength] == "/" || NumerOperation.innerHTML[InptClcMaxlength] == "%"){
         return false
@@ -115,12 +120,88 @@ ButtonResult.addEventListener('click' , function (){
         AddItemHistori()
         AddItemHIstoriPhone()
     }
-})
+}
 
 const testoperation = (opera) => {
     return NumerOperation.innerHTML.indexOf(opera) 
 }
 
+document.body.addEventListener('keyup' , function (event) {
+    switch (event.key){
+        case '1':
+            addKeyValue(event.key)
+            break;
+        case '2':
+            addKeyValue(event.key)
+            break;
+        case '3':
+            addKeyValue(event.key)
+        break;
+        case '5':
+            addKeyValue(event.key)
+            break;
+        case '4':
+            addKeyValue(event.key)
+        break;
+        case '6':
+            addKeyValue(event.key)
+        break;
+        case '7':
+            addKeyValue(event.key)
+        break;
+        case '8':
+            addKeyValue(event.key)
+            break;
+        case '9':
+            addKeyValue(event.key)
+        break;
+        case '0':
+            addKeyValue(event.key)
+            break;
+        
+        case '-':
+            addKeyValueOpera(event.key)
+            break;
+        case '+':
+            addKeyValueOpera(event.key)
+            break;
+        case '%':
+            addKeyValueOpera(event.key)
+            break;
+        case '*':
+            addKeyValueOpera(event.key)
+            break;
+        case '=':
+                OperationResult()
+            break;
+        case 'Enter':
+            OperationResult()
+            break;
+        case 'Backspace':
+            BacSpaceOperation()
+            break;
+        }
+} )
+
+function addKeyValue (numAdd){
+    if (NumerOperation.innerHTML == 0){
+        NumerOperation.innerHTML = numAdd
+    }else {
+        NumerOperation.innerHTML += numAdd
+    }
+}
+function addKeyValueOpera (OperaAdd){
+    var MaxLength = NumerOperation.innerHTML.length - 1
+    if (NumerOperation.innerHTML[MaxLength] == "+" || NumerOperation.innerHTML[MaxLength] == "-" || NumerOperation.innerHTML[MaxLength] == "*" || NumerOperation.innerHTML[MaxLength] == "/" || NumerOperation.innerHTML[MaxLength] == "%"){
+        NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
+        NumerOperation.innerHTML += OperaAdd
+        return false
+    }else if (NumerOperation.innerHTML == 0) {
+        return false
+    }else {
+        NumerOperation.innerHTML += OperaAdd
+    }
+}
 
 function DarkOrLight (){
     SwichTheme()

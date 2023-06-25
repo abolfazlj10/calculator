@@ -14,7 +14,6 @@
 button{
     outline: 0;
     border: 0;
-    background-color: #1e2f3f;
 }
 
 body{
@@ -25,23 +24,53 @@ body{
 
 .CalculatorPosition{
     display: grid;
+    grid-template-columns: repeat(2 , 1fr);
     justify-content: center;
     margin: 30px auto;
     font-family: 'Clinca', sans-serif;
     font-weight: 500;
+    width: 470px;
+    background-color: #ebebeb;
+    box-shadow: -1px 3px 40px  rgba(0, 0, 0, 0.227);
+    transition: 1.2s ease-in-out width;
+    border-radius: 50px;
+}
+
+.DropCalCulator{
+    width: 800px;
+    transition: 1.2s ease-in-out width;
+    border-radius: 0;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.iconNav{
+    display: grid;
+    grid-template-columns: repeat(3 , auto);
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.iconNav i {
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .Calculator{
     width: 470px ;
     height: 948px;
+    text-align: right;
+    display: grid; 
+    grid-template-rows: 1fr 2fr 3fr 1fr;
+    padding: 0 25px 30px 25px;
     background-color: #ebebeb;
     border-radius: 50px;
     box-shadow: -1px 3px 40px  rgba(0, 0, 0, 0.227);
-    text-align: right;
-    display: grid; 
-    grid-template-rows: 1fr 3fr;
-    padding: 0 25px 30px 25px;
-    transition: 0.2s all ease-in;
+}
+
+.CalculatorDark{
+    background-color: rgb(36, 52, 65);
+    box-shadow: -1px 3px 40px  rgba(150, 150, 150, 0.227);
 }
 
 .Result{
@@ -52,11 +81,20 @@ body{
     transition: ease-in 0.2s all ;
 }
 
+.ResultDark{
+    color: rgb(255, 254, 255);
+}
+
 .NumberOperation{
     color: #b1b2b4;
     font-size: 30px;
     padding:0 2px;
 }
+
+.NumberOperationDark{
+    color: rgb(124, 138, 149);
+}
+
 
 .btnCalculator{
     display: grid;
@@ -76,6 +114,18 @@ body{
     transition: 0.2s filter ease-in-out;
 }
 
+.ButtonCalculatorDark{
+    background-color: rgb(36, 52, 65);
+    color: rgb(129, 143, 154);
+    box-shadow: rgb(255 255 255 / 7%) 0px -2px 3px;
+    filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 4px 4px);
+}
+
+.ButtonCalculator:focus{
+    outline: 0;
+    border: 0;
+}
+
 .BtnResult{
     background-color: #ed802e;
     color: #ffe3bb;
@@ -87,9 +137,162 @@ body{
     color: #868687;
 }
 
-#Theme{
-    font-size: 50px;
+.ButtonOperationDark{
+    background-color: rgb(36, 52, 65);
+    color: rgb(213, 140, 97);
+    box-shadow: rgb(255 255 255 / 7%) 0px -2px 3px;
+    filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 4px 4px);
+}
+
+.IconDark{
+    color: rgb(255, 254, 255);
+}
+
+.Version{
+    display: grid;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.VersionDark{
+    color: #fff;
+}
+
+.DropHistori{
+    overflow-y: scroll;
+}
+
+.HistoriItem{
+    color: #1e2f3f;
+    background-color: rgba(129, 143, 154, 0.344);
+    height: 100px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    border: #ffe3bb 0.5px solid;
+    opacity: 0;
+    transition: 0.2s ease-in opacity;
+}
+
+.HistoriItemDark{
+    background-color: rgba(129, 143, 154, 0.344);
+    color: #ebebeb;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    border: #ffffff2e 0.5px solid;
+    opacity: 0;
+    transition: 0.2s ease-in opacity;
+}
+.NumberHistori{
+    display: grid;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 22px;
+    transition: 0.2s ease-in opacity;
+    opacity: 0;
+}
+
+.IconHistori{
+    display: grid;
+    grid-template-columns: repeat(2 , auto);
+    align-items: flex-end;
+    padding-bottom: 5px;
+    transition: 0.2s ease-in opacity;
+    opacity: 0;
+}
+
+.IconHistori i {
     cursor: pointer;
+}
+
+.NextOperation{
+    font-size: 30px;
+    width: 300px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.HistoriModal {
+    display: none;
+    width: 400px;
+    height: 650px;
+    background-color: #e2e2e2;
     position: fixed;
-    right: 1%;
+    transform: translate(-50% , -50%);
+    top: 55%;
+    left: 50%;
+    border-radius: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.iconCloseHistori{
+    display: none;
+    position: fixed;
+    transform: translate(-50% , -50%);
+    left: 50%;
+    top: 8%;
+    width: 70px;
+    cursor: pointer;
+}
+
+.HistoriModalDark{
+    background-color: #313e50;
+}
+
+@keyframes DropModal {
+    from{
+        top: -50%;
+    } 
+}
+
+@keyframes CloseHistori {
+    to{
+        top: -50%;
+    }
+}
+
+.itemHistoriModal{
+    height: 110px;
+    border: 0.5px solid #ffe3bb;
+    color: #1e2f3f;
+    background-color: rgba(129, 143, 154, 0.344);
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
+    transition: 0.2s opacity ease-in-out;
+}
+
+.itemHistoriModalDark{
+    height: 110px;
+    color: #ebebeb;
+    background-color: rgba(129, 143, 154, 0.344);
+    border: 0.5px solid #ffe3bb;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
+    transition: 0.2s opacity ease-in-out;
+}
+
+.NumHistoriModal{
+    transition: 0.2s opacity ease-in-out;
+}
+
+.imageHistoriModal{
+    display: grid;
+    grid-template-columns: repeat(2 , auto);
+    height: 80%;
+    align-items: flex-end;
+    transition: 0.2s opacity ease-in-out;
+}
+
+.imageHistoriModal i {
+    cursor: pointer;
+}
+
+.startOperationModal{
+    font-size: 30px;
+    width: 370px;
+    text-align: center;
 }

@@ -22,6 +22,9 @@ body{
     text-align: right;
     margin-right: 10px;
     margin-left: 10px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .CalculatorPosition{
@@ -248,22 +251,18 @@ body{
 }
 
 .ItemHistoriPhone{
-    background-color: #f0a165d3;
     height: 100px;
     display: grid;
     grid-template-columns: 5fr 1fr;
-    border: #8686879e 0.1px  solid;
     opacity: 0;
     transition: 0.2s ease-in opacity;
 }
 
 .ItemHistoriPhoneDark{
-    background-color: #c5763ab8;
     color: #fff;
     height: 100px;
     display: grid;
     grid-template-columns: 5fr 1fr;
-    border: rgb(130, 130, 130) 0.1px  solid;
     opacity: 0;
     transition: 0.2s ease-in opacity;
 }

@@ -122,7 +122,6 @@ const testoperation = (opera) => {
 }
 
 
-
 function DarkOrLight (){
     SwichTheme()
     if (Calculator.className.includes('CalculatorDark')){

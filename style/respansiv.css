@@ -5,7 +5,7 @@
     .Calculator{
         width: 450px;  
         height: 879px;
-        padding: 0 15px;  
+        padding: 0 15px;   
     }
     .CalculatorPosition{
         width: 450px;
@@ -114,16 +114,19 @@
     .HistoriPhone{
         height: 763.195px ;
     }
+    .HistoriPhoneDrop{
+        width: 300px;
+    }
 }
 @media only screen and (max-width:407px) {
     .Calculator{
         width: 380px !important; 
-        height: 800px !important;
+        height: 780px !important;
         
     }
     .CalculatorPosition{
         width: 380px !important;
-        height: 800px !important;
+        height: 780px !important;
     } 
     .btnCalculator{
         padding: 20px 3px 20px 14px;
@@ -134,5 +137,56 @@
     }
     .HistoriPhone{
         height: 724.195px ;
+    }
+    .HistoriPhoneDrop{
+        width: 290px;
+    }
+    .Result{
+        margin-top: 55px;
+    }
+    .Version{
+        margin-top: 0;
+    }
+}
+
+@media only screen and (max-width:390px) {
+    .Calculator{
+        width: 361px !important;
+        height: 768px !important;
+    }
+    .CalculatorPosition{
+        width: 361px !important;
+        height: 768px !important;
+    }
+    .btnCalculator{
+        padding: 20px 12px 20px 14px;
+        font-size: 17px;
+    }
+    .HistoriPhone {
+        height: 690.195px;
+    }
+    .Result{
+        font-size: 80px;
+    }
+    .NumberOperation{
+        font-size: 20px;
+    }
+    .BtnResult{
+        margin-right: 3px;
+    }
+    .Version{
+        font-size: 15px;
+    }
+    .iconNav i {
+        font-size: 18px;
+    }
+    .ResultOperation{
+        font-size: 18px;
+    }
+    .iconItem i {
+        font-size: 18px;
+    }
+    .HistoriPhoneDrop{
+        width: 265px;
     }
 }

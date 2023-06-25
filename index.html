@@ -1,77 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/ssp.css" >
-    <link rel="stylesheet" href="style/respansiv.css" >
-    <link rel="stylesheet" href="style/all.css">
+    <link rel="stylesheet" href="src/components/style/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
-</head>
-<body onload="LoadBody()">
-    <div class="CalculatorPosition">
-        <div class="Calculator">
-            <div class="iconNav">
-                <i id="Theme" class="fa-regular fa-moon" title="Swich Theme"></i>
-                <i class="fa-solid fa-clock-rotate-left BtnHIstori" title="Histori"></i>
-            </div>
-            <div class="NumberResult-Operation">
-            <p class="Result">
-                0
-            </p>
-            <p  class="NumberOperation">
-                0
-            </p>
-        </div>
-        <div class="btnCalculator">
-            <button class="ButtonCalculator ButtonOperation BtnAc" onmousedown="AllClear()"> AC </button>
-            <button class="ButtonCalculator ButtonOperation BtnBakcspac" onmousedown="BackSpaceOperation()"><i class="fa-solid fa-delete-left"></i></button>
-            <button value="%" class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('%')"><i class="fa-solid fa-percent"></i></button>
-            <button value="/" class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('/')"><i class="fa-solid fa-divide"></i></button>
-            <button value="7" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('7')"  >7</button>
-            <button value="8" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('8')"  >8</button>
-            <button value="9" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('9')"  >9</button>
-            <button value="*"  class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('*')"><i class="fa-solid fa-xmark"></i></button>
-            <button value="4" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('4')"  >4</button>
-            <button value="5" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('5')"  >5</button>
-            <button value="6" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('6')"  >6</button>
-            <button value="-"  class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('-')"><i class="fa-solid fa-minus"></i></button>
-            <button value="1" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('1')"  >1</button>
-            <button value="2" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('2')"  >2</button>
-            <button value="3" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('3')"  >3</button>
-            <button value="+"  class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('+')"><i class="fa-solid fa-plus"></i></button>
-            <button value="0" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('0')"  >0</button>
-            <button value="." class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('.')"  >.</button>
-            <button  class="ButtonCalculator BtnResult" onmousedown="ResultOpration()"><i class="fa-solid fa-equals"></i></button>
-        </div>
-        <div class="Version">
-            <p>
-            v1.8.3
-            </p>
-        </div>
-        <div class="HistoriPhone">
-            <div class="iconClearAllHistoriPhone">
-                <i class="fa-solid fa-trash ClearHistoriPhone " title="Clear All Histori"></i>
-            </div>
-            <div class="HistoriSectionMobile">
-
-            </div>
-        </div>
-    </div>
-    <div class="DropHistori">
-            <div class="iconClearAllHistoriDesktop">
-                <i class="fa-solid fa-trash ClearHistoriDesktop " title="Clear All Histori"></i>
-            </div>
-            <div class="HistoriSection">
-
-            </div>
-            
-        </div>
-    </div>
-    
-
-    <script src="script/script.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>

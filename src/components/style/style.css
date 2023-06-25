@@ -1,3 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=Quicksand:wght@300&display=swap');
+@font-face {
+    font-family: Clinca;
+    src: url(../Font/Clinca/ClinicaPro-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background-color: #ffb178 !important;
+    overflow-x: hidden;
+    text-align: right;
+}
+
+#body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+button{
+    outline: 0;
+    border: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.CalculatorPosition{
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    justify-content: center;
+    margin: 30px auto;
+    font-family: 'Clinca', sans-serif;
+    font-weight: 500;
+    width: 470px;
+    background-color: #ebebeb;
+    box-shadow: -1px 3px 40px  rgba(0, 0, 0, 0.227);
+    transition: 1.2s ease-in-out width;
+    border-radius: 50px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.CalculatorPositionDark{
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    justify-content: center;
+    margin: 30px auto;
+    font-family: 'Clinca', sans-serif;
+    font-weight: 500;
+    width: 470px;
+    background-color: rgb(36, 52, 65);
+    box-shadow: -1px 3px 40px  rgba(150, 150, 150, 0.227);
+    transition: 1.2s ease-in-out width;
+    border-radius: 50px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.DropCalCulator{
+    width: 800px;
+    transition: 1.2s ease-in-out width;
+    border-radius: 50px;
+}
+
+.iconNav{
+    display: grid;
+    grid-template-columns: repeat(2 , auto);
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.iconNav i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.Calculator{
+    width: 470px ;
+    height: 948px;
+    text-align: right;
+    display: grid; 
+    grid-template-rows: 1fr 2fr 3fr 1fr;
+    padding: 0 25px 30px 25px;
+    background-color: #ebebeb;
+    border-radius: 50px;
+    box-shadow: -1px 3px 40px  rgba(0, 0, 0, 0.227);
+    position: relative;
+}
+
+.CalculatorDark{
+    width: 470px ;
+    height: 948px;
+    text-align: right;
+    display: grid; 
+    grid-template-rows: 1fr 2fr 3fr 1fr;
+    padding: 0 25px 30px 25px;
+    background-color: rgb(36, 52, 65);
+    border-radius: 50px;
+    box-shadow: -1px 3px 40px  rgba(150, 150, 150, 0.227);
+    position: relative;
+}
+
+.Result{
+    color: #1e2f3f;
+    font-size: 110px;
+    margin-top: 90px;
+    transition: ease-in 0.2s all ;
+    overflow-x: hidden;
+    direction: rtl;
+}
+
+.ResultDark{
+    color: rgb(255, 254, 255);
+    font-size: 110px;
+    margin-top: 90px;
+    transition: ease-in 0.2s all ;
+    overflow-x: hidden;
+    direction: rtl;
+}
+
+.NumberOperation{
+    color: #b1b2b4;
+    font-size: 30px;
+    overflow-x: hidden;
+    direction: ltr;
+}
+
+.NumberOperationDark{
+    color: rgb(124, 138, 149);
+    font-size: 30px;
+    overflow-x: hidden;
+    direction: ltr;
+}
+
+
+.btnCalculator{
+    display: grid;
+    grid-template-columns: repeat(4 , auto);
+    gap: 30px 25px;
+    font-size: 25px;
+    padding: 40px 0;
+    transition: 0.3s filter ease-in;
+}
+
+.ButtonCalculator{
+    background-color: #efedee;
+    color: #959394;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.09));
+    width: 83.184px ;
+    height: 70.699px ;
+    border-radius: 10px;
+    transition: 0.2s filter ease-in-out;
+}
+
+.ButtonCalculatorDark{
+    background-color: rgb(36, 52, 65);
+    color: rgb(129, 143, 154);
+    box-shadow: rgb(255 255 255 / 7%) 0px -2px 3px;
+    filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 4px 4px);
+    width: 83.184px ;
+    height: 70.699px ;
+    border-radius: 10px;
+    transition: 0.2s filter ease-in-out;
+}
+.ButtonCalculatorDark:focus{
+    outline: 0;
+    border: 0;
+}
+.ButtonCalculator:focus{
+    outline: 0;
+    border: 0;
+}
+
+.BtnResult{
+    background-color: #ed802e;
+    color: #ffe3bb;
+    grid-column: 3/5;
+    width: inherit;
+}
+
+.ButtonOperation{
+    color: #868687;
+}
+
+.ButtonOperationDark{
+    background-color: rgb(36, 52, 65);
+    color: rgb(213, 140, 97);
+    box-shadow: rgb(255 255 255 / 7%) 0px -2px 3px;
+    filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 4px 4px);
+}
+
+.IconDark{
+    color: rgb(255, 254, 255);
+}
+
+.Version{
+    display: grid;
+    justify-content: center;
+    font-size: 16px;
+    transition: 0.3s filter ease-in;
+}
+
+.VersionDark{
+    color: #fff;
+    transition: 0.3s filter ease-in;
+    display: grid;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.DropHistori{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 870.988px;
+    margin-top: 38px;
+    position: relative;
+}
+
+.iconClearAllHistoriPhone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #CED4DA;
+    font-size: 25px;
+    transition: 0.2s ease-in opacity;
+    opacity: 0;
+}
+
+.iconClearAllHistoriPhoneDark{
+    background-color: #495057b3;
+    transition: 0.2s ease-in opacity;
+    opacity: 0;
+}
+
+.iconClearAllHistoriPhoneDark i {
+    cursor: pointer;
+}
+
+.iconClearAllHistoriDesktop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #CED4DA;
+    font-size: 25px;
+    transition: 0.2s ease-in opacity;
+}
+
+.iconClearAllHistoriDesktop i {
+    cursor: pointer;
+}
+
+.iconClearAllHistoriDesktopDark{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    background-color: #495057b3;
+    transition: 0.2s ease-in opacity;
+}
+
+
+.HistoriItem{
+    color: #1e2f3f;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    transition: 0.2s ease-in opacity;
+}
+
+.HistoriItemDark{
+    color: #ebebeb;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    transition: 0.2s ease-in opacity;
+}
+.NumberHistori{
+    display: grid;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 22px;
+    text-align: left;
+    transition: 0.2s ease-in opacity;
+}
+
+.IconHistori{
+    display: grid;
+    grid-template-columns: repeat(2 , auto);
+    align-items: flex-end;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    transition: 0.2s ease-in opacity;
+}
+
+.IconHistori i {
+    cursor: pointer;
+}
+
+.NextOperation{
+    font-size: 30px;
+    width: 300px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.HistoriPhone{
+    width: 0;
+    height: 853.195px;
+    background-color: #8d99aeb5;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0 ,-50%);
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    overflow-y: scroll;
+    transition: 1s ease-in-out width;
+    color: #1e2f3f;
+}
+
+.HistoriPhoneDrop{
+    width: 350px;
+    transition: 1s ease-in-out width;
+}
+
+.HistoriPhoneDark{
+    background-color: #2b3d4eb8;
+    color: rgb(255, 254, 255);
+}
+
+.blurClc{
+    filter: blur(2px);
+}
+
+.ItemHistoriPhone{
+    height: 100px;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    opacity: 1;
+    transition: 0.2s ease-in opacity;
+}
+
+.ItemHistoriPhoneDark{
+    color: #fff;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    opacity: 1;
+    transition: 0.2s ease-in opacity;
+}
+
+.NumberItem{
+    display: grid;
+    align-items: center;
+    text-align: left;
+    margin-left: 5px;
+    font-size: 22px;
+    transition: 0.2s ease-in opacity;
+    opacity: 0;
+}
+
+.iconItem{
+    font-size: 20px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 5px;
+    justify-content: space-around;
+    direction: rtl;
+    transition: 0.2s ease-in opacity;
+    opacity: 0;
+}
+
+.iconItem i {
+    cursor: pointer;
+}
+
+.StartOperationPhone{
+    align-self: center;
+    justify-content: end;
+    font-size: 22px;
+    transition: 0.2s ease-in opacity;
+}
+
 @media only screen and (max-width:839px) {
     .Calculator{
         transition: 0.5s ease-in width;
@@ -965,9 +1363,7 @@
     }
     .CalculatorPosition{
         height: 455px !important;
-    }
-    .btnCalculator{
-        padding: 2px 8px 8px 10px;
+        font-size: initial;
     }
     .Version p {
         margin-bottom: 0;

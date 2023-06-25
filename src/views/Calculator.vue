@@ -37,7 +37,7 @@
             </div>
             <div :class="(store.mode == 'Light') ? 'Version' : 'VersionDark' ">
                 <p :class=" (store.HistoriSectionMobileStyleDrop) ? 'blurClc' : ''">
-                v2.0.1
+                v2.0.2
                 </p>
             </div>
             <div class="HistoriPhone" :class="(store.HistoriSectionMobileStyleDrop) ? 'HistoriPhoneDrop' : '' , (store.mode == 'Light') ? 'HistoriPhone' : 'HistoriPhoneDark'">
@@ -109,7 +109,7 @@ const store = useCounterStore()
 
 
 <style>
-@import url(../components/style/style.css);
-@import url(../components/style/all.css);
+@import url(../assets/style/style.css);
+@import url(../assets/style/all.css);
 </style>
 

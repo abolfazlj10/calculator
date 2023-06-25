@@ -1,5 +1,5 @@
 <template>
-  <Calculator/>
+  <Router-view></Router-view>
 </template>
 
 <script>
@@ -18,4 +18,5 @@ export default {
 
 
 <style>
+
 </style>

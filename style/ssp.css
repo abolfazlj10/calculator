@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=Quicksand:wght@300&display=swap');
+
+@font-face {
+    font-family: Clinca;
+    src: url(../Font/Clinca/ClinicaPro-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button{
+    outline: 0;
+    border: 0;
+    background-color: #1e2f3f;
+}
+
+body{
+    background-color: #ffb178 !important;
+    overflow-x: hidden;
+    text-align: right;
+}
+
+.CalculatorPosition{
+    display: grid;
+    justify-content: center;
+    margin: 30px auto;
+    font-family: 'Clinca', sans-serif;
+    font-weight: 500;
+}
+
+.Calculator{
+    width: 470px ;
+    height: 948px;
+    background-color: #ebebeb;
+    border-radius: 50px;
+    box-shadow: -1px 3px 40px  rgba(0, 0, 0, 0.227);
+    text-align: right;
+    display: grid; 
+    grid-template-rows: 1fr 3fr;
+    padding: 0 25px 30px 25px;
+    transition: 0.2s all ease-in;
+}
+
+.Result{
+    color: #1e2f3f;
+    font-size: 110px;
+    padding: 0 4px;
+    margin-top: 90px;
+    transition: ease-in 0.2s all ;
+}
+
+.NumberOperation{
+    color: #b1b2b4;
+    font-size: 30px;
+    padding:0 2px;
+}
+
+.btnCalculator{
+    display: grid;
+    grid-template-columns: repeat(4 , auto);
+    gap: 30px 25px;
+    font-size: 25px;
+    padding: 40px 0;
+}
+
+.ButtonCalculator{
+    background-color: #efedee;
+    color: #959394;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.09));
+    width: 83.184px ;
+    height: 70.699px ;
+    border-radius: 10px;
+    transition: 0.2s filter ease-in-out;
+}
+
+.BtnResult{
+    background-color: #ed802e;
+    color: #ffe3bb;
+    grid-column: 3/5;
+    width: inherit;
+}
+
+.ButtonOperation{
+    color: #868687;
+}
+
+#Theme{
+    font-size: 50px;
+    cursor: pointer;
+    position: fixed;
+    right: 1%;
+}

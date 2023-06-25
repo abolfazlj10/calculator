@@ -1,0 +1,58 @@
+@media (min-width:0) and (max-width:482px) {
+    .Calculator{
+        width: 450px ;
+    }
+    .btnCalculator{
+        padding: 40px 0 10px 0;
+        gap: 0 25px;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:0) and (max-width:456px) {
+    .Calculator{
+        padding: 0 15px 30px 15px ;
+        height: 863px;
+    }
+    .Result{
+        font-size: 90px;
+    }
+    .NumberOperation{
+        font-size: 20px;
+    }
+    .btnCalculator{
+        font-size: 15px;
+    }
+}
+@media (min-width:0) and (max-width:460px) {
+    .Calculator{
+        width: 430px ;
+    }
+    .btnCalculator{
+        gap: 25px 20px;
+    }
+}
+@media (min-width:0) and (max-width:440px) {
+    .Calculator{
+        width: 400px ;
+    }
+    .btnCalculator{
+        gap: 20px 15px;
+    }
+}
+@media (min-width:0) and (max-width:400px) {
+    .Calculator{
+        width: 380px ;
+    }
+    .btnCalculator{
+        gap: 15px 10px;
+    }
+    .ButtonCalculator{
+        width: 79px;
+        height: 66px;
+    }
+    .BtnResult{
+        width: inherit;
+    }
+}

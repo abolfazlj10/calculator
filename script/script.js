@@ -1,11 +1,13 @@
 let $ = document
 let Theme = $.querySelectorAll('#Theme')[0]
 let BtnHIstori = $.querySelectorAll('.BtnHIstori')[0]
-let HistoriPhone = $.querySelectorAll('.HistoriPhone')[0]
-let ClearHistori = $.querySelectorAll('.ClearHistori')[0]
-let clcHome = $.querySelectorAll('.DropHistori')[0]
+let HistoriPhone = $.querySelectorAll('.HistoriSectionMobile')[0]
+let ClearHistoriDesktop = $.querySelectorAll('.ClearHistoriDesktop')[0]
+let ClearHistoriPhone = $.querySelectorAll('.ClearHistoriPhone')[0]
+let clcHome = $.querySelectorAll('.HistoriSection')[0]
 let CalculatorHome = $.querySelectorAll('.CalculatorPosition')[0]
 let Version = $.querySelectorAll('.Version')[0] 
+let NumberResultOperationDiv = $.querySelectorAll('.NumberResult-Operation')[0]
 let Calculator = $.querySelector('.Calculator') 
 let ResultNumber = $.querySelector('.Result') 
 let NumerOperation = $.querySelector('.NumberOperation') 
@@ -15,11 +17,17 @@ let ButtonOperationAll = $.querySelectorAll('.ButtonOperation')
 let ButtonResult = $.querySelector('.BtnResult') 
 let BtnNumber = $.querySelectorAll('.ButtonNumber') 
 let ButtonAllClear = $.querySelector('.BtnAc') 
-let ButtonBackSpace = $.querySelector('.BtnBakcspac') 
+let ButtonBackSpace = $.querySelector('.BtnBakcspac')
+var iconClearAllHistoriPhone = $.querySelector('.iconClearAllHistoriPhone')
+var iconClearAllHistoriDesktop = $.querySelector('.iconClearAllHistoriDesktop')
+let mapbtnCalculator = $.querySelectorAll('.btnCalculator')[0]
+let HistoriSectionMobile = $.querySelector('.HistoriPhone')
 
-
-let ValueOperation
-let ItemHistori
+let NumberOfOperation = 0
+let valueKeyUserResult = 0
+let valueKeyUserAfter = 0
+let valueKeyUserBefore = 0
+let ValueOperation , ItemHistori , TypeOperation 
 
 
 let HistoriOperation = []
@@ -30,7 +38,9 @@ Theme.addEventListener('click' , DarkOrLight)
 
 BtnHIstori.addEventListener('click' , DropCalculator)
 
-ClearHistori.addEventListener('click' , ClearlocalHistori)
+ClearHistoriDesktop.addEventListener('click' , ClearlocalHistori)
+
+ClearHistoriPhone.addEventListener('click' , ClearlocalHistori)
 
 window.addEventListener('load' , loaderhistori) 
 
@@ -46,73 +56,278 @@ function localHistori (one , two){
     localStorage.setItem(one , JSON.stringify(two))
 }
 
-BtnNumber.forEach((BtnNum) =>{
-    
-    BtnNum.addEventListener('mousedown' , function (){
-        ValueOperation = BtnNum.value
-        if (NumerOperation.innerHTML == 0){
-            NumerOperation.innerHTML = ValueOperation
+function displayNumber (number){
+    if (TypeOperation == '+' || TypeOperation == '-' || TypeOperation == '*' ||TypeOperation == '/' ||TypeOperation == '%' ){
+        if (valueKeyUserAfter == 0){
+            valueKeyUserAfter = number
+            NumerOperation.innerHTML += number
         }else {
-            NumerOperation.innerHTML += ValueOperation
+            valueKeyUserAfter += number
+            NumerOperation.innerHTML += number
         }
-    })
-})
+        switch (TypeOperation){
+            case '+':
+                SumValueOpera()
+                break;
+            case '-':
+                SubMission()
+                break;
+            case '*':
+                Multiplication()
+                break;
+            case '/':
+                DivisionOperation()
+                break;
+            case '%':
+                PercentOperation()
+                break;
 
+        }
+    }else{
+        if (valueKeyUserBefore == 0){
+            valueKeyUserBefore = number
+            NumerOperation.innerHTML = number
+        }else {
+            valueKeyUserBefore += number
+            NumerOperation.innerHTML += number
+        }
+    }
+}
 
-ButtonOperation.forEach((opera) => {
-    opera.addEventListener('mousedown' , function (){
-        OperationMethod(opera.value)
-    })
-})
-
-function OperationMethod (Opera){
+function OperationResultAdd (Opera){
     var MaxLength = NumerOperation.innerHTML.length - 1
     if (NumerOperation.innerHTML[MaxLength] == "+" || NumerOperation.innerHTML[MaxLength] == "-" || NumerOperation.innerHTML[MaxLength] == "*" || NumerOperation.innerHTML[MaxLength] == "/" || NumerOperation.innerHTML[MaxLength] == "%"){
         NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
         NumerOperation.innerHTML += Opera
+        TypeOperation = Opera
         return false
-    }else if (NumerOperation.innerHTML == 0) {
+    }else if (NumerOperation.innerHTML == 0){
         return false
-    }else{
+    }else {
+        if (NumberOfOperation > 0){
+            valueKeyUserAfter = 0
+            valueKeyUserBefore = valueKeyUserResult
+        }
+        NumberOfOperation += 1
+        TypeOperation = Opera
         NumerOperation.innerHTML += Opera
     }
 }
 
+function SumValueOpera (){
+    valueKeyUserResult = Number(valueKeyUserBefore) + Number(valueKeyUserAfter)
+}
 
-ButtonAllClear.addEventListener('mousedown' , function (){
+function SubMission (){
+    valueKeyUserResult = valueKeyUserBefore - valueKeyUserAfter
+}
+
+function Multiplication (){
+    valueKeyUserResult = valueKeyUserBefore * valueKeyUserAfter
+}
+
+function DivisionOperation (){
+    valueKeyUserResult = valueKeyUserBefore / valueKeyUserAfter
+}
+function PercentOperation (){
+    valueKeyUserResult = (valueKeyUserBefore/100) * valueKeyUserAfter
+}
+
+
+function BackSpaceOperation (){
+    MaxLengthNumberOperation = NumerOperation.innerHTML.length - 1
+
+    if (NumerOperation.innerHTML[MaxLengthNumberOperation] == '+' || NumerOperation.innerHTML[MaxLengthNumberOperation] == '-' || NumerOperation.innerHTML[MaxLengthNumberOperation] == '*' || NumerOperation.innerHTML[MaxLengthNumberOperation] == '/' || NumerOperation.innerHTML[MaxLengthNumberOperation] == '%'){
+        NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
+        
+        if (NumberOfOperation == 1){
+            TypeOperation = undefined
+            NumberOfOperation = 0
+        }else {
+            NumberOfOperation = NumberOfOperation - 1
+            BackSpaceOperationNotOne()
+            MoveBeforeToAfter()
+        }
+        
+    }else {
+
+        if (valueKeyUserAfter == 0){
+            valueKeyUserAfterZero()
+        }else {
+            valueKeyUserAfterNotZero()
+        }
+        OperationWhithBacspace()
+    }
+
+}
+
+var indexOperation 
+function BackSpaceOperationNotOne (){
+
+    indexPlus = NumerOperation.innerHTML.lastIndexOf('+')
+    indexSubMission = NumerOperation.innerHTML.lastIndexOf('-')
+    indexMultiplication = NumerOperation.innerHTML.lastIndexOf('*')
+    indexDivision = NumerOperation.innerHTML.lastIndexOf('/')
+    indexPercent = NumerOperation.innerHTML.lastIndexOf('%')
+    
+    if (indexPlus > indexSubMission && indexPlus > indexMultiplication && indexPlus > indexDivision && indexPlus > indexPercent){
+        indexOperation = indexPlus
+        TypeOperation = '+'
+        return false
+    }else if (indexSubMission > indexPlus && indexSubMission > indexMultiplication && indexSubMission > indexDivision && indexSubMission > indexPercent){
+        indexOperation = indexSubMission
+        TypeOperation = '-'
+        return false
+    }else if (indexMultiplication > indexPlus && indexMultiplication > indexSubMission && indexMultiplication > indexDivision && indexMultiplication > indexPercent){
+        indexOperation = indexMultiplication
+        TypeOperation = '*'
+        return false
+    }else if (indexDivision > indexPlus && indexDivision > indexSubMission && indexDivision > indexMultiplication && indexDivision > indexPercent){
+        indexOperation = indexDivision
+        TypeOperation = '/'
+        return false
+    }else if (indexPercent > indexPlus && indexPercent > indexSubMission && indexPercent > indexMultiplication && indexPercent > indexDivision){
+        indexOperation = indexPercent
+        TypeOperation = '%'
+        return false
+    }
+
+}
+
+function valueKeyUserAfterNotZero (){
+    valueKeyUserAfter = valueKeyUserAfter.toString().slice(0 , -1)
+    NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
+    if (valueKeyUserAfter == ''){
+         valueKeyUserAfter = 0
+    }
+}
+
+function valueKeyUserAfterZero(){
+    NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
+}
+
+function OperationWhithBacspace (){
+    indexPlus = NumerOperation.innerHTML.lastIndexOf('+')
+    indexSubMission = NumerOperation.innerHTML.lastIndexOf('-')
+    indexMultiplication = NumerOperation.innerHTML.lastIndexOf('*')
+    indexDivision = NumerOperation.innerHTML.lastIndexOf('/')
+    indexPercent = NumerOperation.innerHTML.lastIndexOf('%')
+    
+    MaxLengthNumberOperation = NumerOperation.innerHTML.length -1
+
+    if (indexPlus > indexSubMission && indexPlus > indexMultiplication && indexPlus > indexDivision && indexPlus > indexPercent){
+
+        SumValueOpera()
+        return false
+        
+    }else if (indexSubMission > indexPlus && indexSubMission > indexMultiplication && indexSubMission > indexDivision && indexSubMission > indexPercent){
+
+        SubMission() 
+        return false
+
+    }else if (indexMultiplication > indexPlus && indexMultiplication > indexSubMission && indexMultiplication > indexDivision && indexMultiplication > indexPercent){
+
+        Multiplication()
+        return false
+
+    }else if (indexDivision > indexPlus && indexDivision > indexSubMission && indexDivision > indexMultiplication && indexDivision > indexPercent){
+
+        DivisionOperation()
+        return false
+
+    }else if (indexPercent > indexPlus && indexPercent > indexSubMission && indexPercent > indexMultiplication && indexPercent > indexDivision){
+
+        PercentOperation()
+        return false
+
+    }else {
+        valueKeyUserBefore = valueKeyUserBefore.toString().slice(0 , -1)
+        if (valueKeyUserBefore == ''){
+            valueKeyUserBefore = 0
+            NumerOperation.innerHTML = 0
+        }
+    }
+}
+
+var CutLastValueForBefore
+function MoveBeforeToAfter (){
+    indexOperation += 1
+    CutLastValueForBefore = NumerOperation.innerHTML.slice(indexOperation)
+    valueKeyUserAfter = Number(CutLastValueForBefore)
+    switch (TypeOperation) {
+        case '+' : 
+        returnBeforeOperationSubMission()
+            break ;
+        case '-' : 
+        returnBeforeOperationSum()
+            break ;
+        case '*' : 
+        returnBeforeOperationDivision()
+            break ;
+        case '/' : 
+        returnBeforeOperationMultiplication()
+            break ;
+        case '%' : 
+        returnBeforeOperationPercent()
+            break ;
+    }
+
+}
+
+function returnBeforeOperationSubMission (){
+    valueKeyUserBefore =  valueKeyUserBefore - valueKeyUserAfter
+    SumValueOpera()
+}
+function returnBeforeOperationSum (){
+    valueKeyUserBefore = Number(valueKeyUserBefore) + Number(valueKeyUserAfter)
+    SubMission()
+}
+function returnBeforeOperationDivision (){
+    valueKeyUserBefore = valueKeyUserBefore / valueKeyUserAfter
+    Multiplication()
+}
+function returnBeforeOperationMultiplication (){
+    valueKeyUserBefore = valueKeyUserBefore * valueKeyUserAfter
+    DivisionOperation()
+}
+function returnBeforeOperationPercent (){
+    valueKeyUserBefore = valueKeyUserAfter * 100
+    PercentOperation()
+}
+
+function AllClear (){
     if (NumerOperation.innerHTML == "0"){
       
     }else {
         NumerOperation.innerHTML = '0'
         ResultNumber.innerHTML = '0'
+        valueKeyUserAfter = 0 
+        valueKeyUserBefore = 0 
+        valueKeyUserResult = 0 
+        TypeOperation = undefined
+        NumberOfOperation = 0
         AddNextOperation()
         StartOperationPhone()
     }
-})
 
-ButtonBackSpace.addEventListener('mousedown' , BacSpaceOperation)
-
-function BacSpaceOperation (){
-    if (NumerOperation.innerHTML.length == 1){
-        NumerOperation.innerHTML = '0'
+    if (window.innerWidth < 531){
+        FontsizeResultNumber1()
     }else {
-        NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
-    }
+        FontsizeResultNumber2()
+    } 
 }
 
-ButtonResult.addEventListener('click' , OperationResult)
-
-function OperationResult (){
+function ResultOpration (){
     var InptClcMaxlength = NumerOperation.innerHTML.length - 1
     if (NumerOperation.innerHTML[InptClcMaxlength] == "+" || NumerOperation.innerHTML[InptClcMaxlength] == "-" || NumerOperation.innerHTML[InptClcMaxlength] == "*" || NumerOperation.innerHTML[InptClcMaxlength] == "/" || NumerOperation.innerHTML[InptClcMaxlength] == "%"){
         return false
-    }else if ( testoperation('-') == -1 && testoperation('+') == -1 && testoperation('*') == -1 && testoperation('/') == -1   ) {
+    }else if ( testoperation('-') == -1 && testoperation('+') == -1 && testoperation('*') == -1 && testoperation('/') == -1 && testoperation('%') == -1  ) {
         return false
     } else if (NumerOperation.innerHTML == "0"){
         NumerOperation.innerHTML = ""
         return false
     } else {
-        ResultNumber.innerHTML = eval(NumerOperation.innerHTML)
+        ResultNumber.innerHTML = valueKeyUserResult
         ObjResult = {
             Result : ResultNumber.innerHTML ,
             Operation :  NumerOperation.innerHTML , 
@@ -122,103 +337,531 @@ function OperationResult (){
         NumerOperation.innerHTML = ResultNumber.innerHTML
         AddItemHistori()
         AddItemHIstoriPhone()
+        TypeOperation = undefined
+        NumberOfOperation = 0
+    }
+    if (window.innerWidth < 531){
+        FontsizeResultNumber1()
+    }else {
+        FontsizeResultNumber2()
     }
 }
-
 function testoperation(opera){
     return NumerOperation.innerHTML.indexOf(opera) 
 } 
 
-
 document.body.addEventListener('keyup' , function (event) {
     switch (event.key){
+        case '.':
+            displayNumber(event.key)
+            break;
         case '1':
-            addKeyValue(event.key)
+            displayNumber(event.key)
             break;
         case '2':
-            addKeyValue(event.key)
+            displayNumber(event.key)
             break;
         case '3':
-            addKeyValue(event.key)
+            displayNumber(event.key)
         break;
         case '5':
-            addKeyValue(event.key)
+            displayNumber(event.key)
             break;
         case '4':
-            addKeyValue(event.key)
+            displayNumber(event.key)
         break;
         case '6':
-            addKeyValue(event.key)
+            displayNumber(event.key)
         break;
         case '7':
-            addKeyValue(event.key)
+            displayNumber(event.key)
         break;
         case '8':
-            addKeyValue(event.key)
+            displayNumber(event.key)
             break;
         case '9':
-            addKeyValue(event.key)
+            displayNumber(event.key)
         break;
         case '0':
-            addKeyValue(event.key)
+            displayNumber(event.key)
             break;
         case '-':
-            OperationMethod(event.key)
+            OperationResultAdd(event.key)
             break;
         case '+':
-            OperationMethod(event.key)
+            OperationResultAdd(event.key)
             break;
         case '%':
-            OperationMethod(event.key)
+            OperationResultAdd(event.key)
             break;
         case '*':
-            OperationMethod(event.key)
+            OperationResultAdd(event.key)
             break;
         case '/':
-            OperationMethod(event.key)
+            OperationResultAdd(event.key)
             break;
         case '=':
-            OperationResultKeyboard()
+            ResultOpration()
             break;
         case 'Enter':
-            OperationResultKeyboard()
+            ResultOpration()
             break;
         case 'Backspace':
-            BacSpaceOperation()
+            BackSpaceOperation()
             break;
-        }
+    }
 } )
+var lengthResultNumber
+function FontsizeResultNumber1 (){
+    lengthResultNumber = ResultNumber.innerHTML.length
+    
+    if (window.innerWidth < 320){
 
-function addKeyValue (numAdd){
-    if (NumerOperation.innerHTML == 0){
-        NumerOperation.innerHTML = numAdd
-    }else {
-        NumerOperation.innerHTML += numAdd
+        innerWidth320() 
+
+    }else if (window.innerWidth <= 360){
+
+        innerWidth360()
+
+    }else if (window.innerWidth <= 395){
+
+        innerWidth395()
+
+    }else if (window.innerWidth <= 421){
+
+        innerWidth421()
+
+    }else if (window.innerWidth <= 440){
+
+        innerWidth440()
+
+    }else if (window.innerWidth <= 460){
+
+        innerWidth460()
+
+    }else if (window.innerWidth <= 488){
+
+        innerWidth488()
+
+    }else if (window.innerWidth <= 510){
+
+        innerWidth510()
+
+    }else if (window.innerWidth <= 530){
+
+        innerWidth530()
+
     }
 }
 
-function OperationResultKeyboard (){
-    var InptClcMaxlength = NumerOperation.innerHTML.length - 1
-    if (NumerOperation.innerHTML[InptClcMaxlength] == "+" || NumerOperation.innerHTML[InptClcMaxlength] == "-" || NumerOperation.innerHTML[InptClcMaxlength] == "*" || NumerOperation.innerHTML[InptClcMaxlength] == "/" || NumerOperation.innerHTML[InptClcMaxlength] == "%"){
-        return false
-    }else if ( testoperation('-') == -1 && testoperation('+') == -1 && testoperation('*') == -1 && testoperation('/') == -1 ) {
-        return false
-    } else if (NumerOperation.innerHTML == "0"){
-        NumerOperation.innerHTML = ""
-        return false
-    } else {
-        ResultNumber.innerHTML = eval(NumerOperation.innerHTML)
-        ObjResult = {
-            Result : ResultNumber.innerHTML ,
-            Operation :  NumerOperation.innerHTML , 
-        }
-        HistoriOperation.push(ObjResult)
-        localHistori('historiCalculator' , HistoriOperation)
-        NumerOperation.innerHTML = ResultNumber.innerHTML
-        AddItemHistori()
-        AddItemHIstoriPhone()
+function FontsizeResultNumber2(){
+    lengthResultNumber = ResultNumber.innerHTML.length
+    if (lengthResultNumber <= 6){
+
+        EditFontSizeShortCut('164.976px' , '110px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('164.976px' , '90px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('164.976px' , '80px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('164.976px' , '70px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('164.976px' , '65px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('164.976px' , '60px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('164.976px' , '55px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('164.976px' , '50px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('164.976px' , '45px')
+    
     }
 }
+
+function EditFontSizeShortCut (editheight , fontsresult){
+    ResultNumber.style.height = editheight
+    ResultNumber.style.fontSize = fontsresult
+}
+
+function innerWidth530 (){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('150px' , '100px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('150px' , '90px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('150px' , '80px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('150px' , '70px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('150px' , '65px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('150px' , '60px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('150px' , '55px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('150px' , '50px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('150px' , '45px')
+    
+    }
+}
+function innerWidth510 (){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('150px' , '100px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('150px' , '90px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('150px' , '80px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('150px' , '70px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('150px' , '62px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('150px' , '58px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('150px' , '53px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('150px' , '48px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('150px' , '45px')
+    
+    }
+}
+function innerWidth488 (){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('135px' , '90px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('135px' , '80px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('135px' , '70px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('135px' , '60px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('135px' , '58px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('135px' , '52px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('135px' , '48px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('135px' , '44px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('135px' , '40px')
+    
+    }
+}
+function innerWidth460 (){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('135px' , '90px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('135px' , '75px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('135px' , '68px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('135px' , '60px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('135px' , '53px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('135px' , '48px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('135px' , '43px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('135px' , '40px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('135px' , '38px')
+    
+    }
+}
+function innerWidth440 (){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('120px' , '80px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('120px' , '70px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('120px' , '64px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('120px' , '56px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('120px' , '50px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('120px' , '46px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('120px' , '41px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('120px' , '38px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('120px' , '36px')
+    
+    }
+}
+function innerWidth421 (){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('90px' , '60px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('90px' , '60px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('90px' , '60px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('90px' , '54px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('90px' , '48px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('90px' , '45px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('90px' , '41px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('90px' , '37px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('90px' , '34px')
+    
+    }
+}
+function innerWidth395(){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('82.500px' , '55px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('82.500px' , '54px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('82.500px' , '50px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('82.500px' , '49px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('82.500px' , '42px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('82.500px' , '40px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('82.500px' , '35px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('82.500px' , '33px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('82.500px' , '30px')
+    
+    }
+}
+function innerWidth360(){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('75px' , '50px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('75px' , '50px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('75px' , '45px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('75px' , '42px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('75px' , '37px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('75px' , '32px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('75px' , '30px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('75px' , '29px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('75px' , '25px')
+    
+    }
+}
+function innerWidth320(){
+
+    if (lengthResultNumber <= 6){
+        
+        EditFontSizeShortCut('60px' , '40px')
+        
+    }else if (lengthResultNumber == 7){
+
+        EditFontSizeShortCut('60px' , '40px')
+        
+    }else if (lengthResultNumber == 8){
+
+        EditFontSizeShortCut('60px' , '40px')
+        
+    }else if (lengthResultNumber == 9){
+
+        EditFontSizeShortCut('60px' , '37px')
+        
+    }else if (lengthResultNumber == 10){
+
+        EditFontSizeShortCut('60px' , '34px')
+        
+    }else if (lengthResultNumber == 11){
+
+        EditFontSizeShortCut('60px' , '32px')
+        
+    }else if (lengthResultNumber == 12){
+
+        EditFontSizeShortCut('60px' , '28px')
+        
+    }else if (lengthResultNumber == 13){
+
+        EditFontSizeShortCut('60px' , '25px')
+        
+    }else if (lengthResultNumber >= 14){
+
+        EditFontSizeShortCut('60px' , '24px')
+    
+    }
+}
+
+
 
 function DarkOrLight (){
     SwichTheme()
@@ -228,17 +871,25 @@ function DarkOrLight (){
         localStorage.setItem('ThemeCalculator' , 'Light')
     }
 }
+
+
 var ItemHistoriPhone , ItemHistoriPhoneDark , itemHistoriDark
+var ValedElementHistoriPhone = $.querySelectorAll('.HistoriPhone ')[0]
 function SwichTheme (){
+    CounterPageClickHistori = 0
+    
     ItemHistoriPhone = $.querySelectorAll('.ItemHistoriPhone')
     ItemHistoriPhoneDark = $.querySelectorAll('.ItemHistoriPhoneDark')
     ItemHistori = $.querySelectorAll('.HistoriItem')
     itemHistoriDark = $.querySelectorAll('.HistoriItemDark')
+    
+    iconClearAllHistoriPhone.classList.toggle('iconClearAllHistoriPhoneDark')
+    iconClearAllHistoriDesktop.classList.toggle('iconClearAllHistoriDesktopDark')
     Calculator.classList.toggle('CalculatorDark')
     CalculatorHome.classList.toggle('CalculatorDark')
     ResultNumber.classList.toggle('ResultDark')
     NumerOperation.classList.toggle('NumberOperationDark')
-    HistoriPhone.classList.toggle('HistoriPhoneDark')
+    ValedElementHistoriPhone.classList.toggle('HistoriPhoneDark')
     ButtonCalculator.forEach(function (theme){
         theme.classList.toggle('ButtonCalculatorDark')
     })
@@ -247,7 +898,8 @@ function SwichTheme (){
     })
     Version.classList.toggle('VersionDark')
     BtnHIstori.classList.toggle('IconDark')
-    ClearHistori.classList.toggle('IconDark')
+    ClearHistoriPhone.classList.toggle('IconDark')
+    ClearHistoriDesktop.classList.toggle('IconDark')
     ItemHistori.forEach(function (Item){
         Item.classList.toggle('HistoriItemDark')
     })
@@ -258,7 +910,7 @@ function SwichTheme (){
         ItemHistori.forEach( function (Histori){
             Histori.className = 'HistoriItemDark'
         })
-
+        
         ItemHistoriPhone.forEach( function (Histori){
             Histori.className = 'ItemHistoriPhoneDark'
         })
@@ -268,6 +920,8 @@ function SwichTheme (){
         ItemHistoriPhoneDark.forEach( function (Histori){
             Histori.className = 'ItemHistoriPhone'
         })
+
+        
         itemHistoriDark.forEach( function (Histori){
             Histori.className = 'HistoriItem'
         })
@@ -394,18 +1048,18 @@ function DropCalculator (){
             }else {
                 DropBox()
             }
-        }else{
-
         }
     }
 }
+
+var iconClearAllHistoriPhoneAnimeLight , iconClearAllHistoriPhoneAnimeDark , iconClearAllHistoriDesktopLight , iconClearAllHistoriDesktopDark
 
 function CloseBox (){
     BoxDropOrClose = false
     CloseBoxHistori()
     setTimeout(function (){
         CalculatorHome.classList.remove('DropCalCulator')
-    } , 1000)
+    } , 500)
 }
 
 function DropBox (){
@@ -415,79 +1069,94 @@ function DropBox (){
 }
 
 function DropBoxHistori (){
-        var operationopacity= $.querySelectorAll('.NextOperation')
-        var HistoriItem 
-        var imagHistori = $.querySelectorAll('.IconHistori')
-        var NumHistori = $.querySelectorAll('.NumberHistori')
-        if (localStorage.getItem('ThemeCalculator' ) == 'Dark'){
-            HistoriItem = $.querySelectorAll('.HistoriItemDark')
-    
-            imagHistori.forEach((image) => {
-                image.style.opacity = '0'
-                setTimeout(function (){
-                    image.style.opacity = '1'
-                } , 1500)
-            })
-    
-            NumHistori.forEach((Num) => {
-                Num.style.opacity = '0'
-                setTimeout(function (){
-                    Num.style.opacity = '1'
-                } , 1500)
-            })
-    
-            operationopacity.forEach((item) => {
-    
-                item.style.opacity = '0'
-                setTimeout(function (){
-                    item.style.opacity = '1'
-                } , 1500)
-            })
-            HistoriItem.forEach((item) => {
-                item.style.opacity = '0'
-                setTimeout( function () {
-                    item.style.opacity = '1'
-                    
-                } , 1000)
-            })
-    
-    
-    
-        }else {
-            HistoriItem = $.querySelectorAll('.HistoriItem')
-    
-            imagHistori.forEach((image) => {
-                image.style.opacity = '0'
-                setTimeout(function (){
-                    image.style.opacity = '1'
-                } , 1500)
-            })
-    
-            NumHistori.forEach((Num) => {
-                Num.style.opacity = '0'
-                setTimeout(function (){
-                    Num.style.opacity = '1'
-                } , 1500)
-            })
-            operationopacity.forEach((item) => {
-    
-                item.style.opacity = '0'
-                setTimeout(function (){
-                    item.style.opacity = '1'
-                } , 1500)
-            })
-    
-            HistoriItem.forEach((item) => {
-                item.style.opacity = '0'
-                setTimeout( function () {
-                    item.style.opacity = '1'
-                    
-                } , 1000)
-            })
-            
-        }
+    var operationopacity= $.querySelectorAll('.NextOperation')
+    var HistoriItem
+    var imagHistori = $.querySelectorAll('.IconHistori')
+    var NumHistori = $.querySelectorAll('.NumberHistori')
+    if (localStorage.getItem('ThemeCalculator' ) == 'Dark'){
+        HistoriItem = $.querySelectorAll('.HistoriItemDark')
+        iconClearAllHistoriDesktopDark = $.querySelector('.iconClearAllHistoriDesktopDark')
+
+        imagHistori.forEach((image) => {
+            image.style.opacity = '0'
+            setTimeout(function (){
+                image.style.opacity = '1'
+            } , 1500)
+        })
+
+        NumHistori.forEach((Num) => {
+            Num.style.opacity = '0'
+            setTimeout(function (){
+                Num.style.opacity = '1'
+            } , 1500)
+        })
+
+        operationopacity.forEach((item) => {
+
+            item.style.opacity = '0'
+            setTimeout(function (){
+                item.style.opacity = '1'
+            } , 1500)
+        })
+
+        iconClearAllHistoriDesktopDark.style.opacity = '0'
+        setTimeout(function (){
+            iconClearAllHistoriDesktopDark.style.opacity = '1'
+        } , 1500)
+
+        HistoriItem.forEach((item) => {
+            item.style.opacity = '0'
+            setTimeout( function () {
+                item.style.opacity = '1'
+                
+            } , 1000)
+        })
+
+
+
+    }else {
+        HistoriItem = $.querySelectorAll('.HistoriItem')
+        iconClearAllHistoriDesktopLight = $.querySelector('.iconClearAllHistoriDesktop ')
+
+
+        imagHistori.forEach((image) => {
+            image.style.opacity = '0'
+            setTimeout(function (){
+                image.style.opacity = '1'
+            } , 1500)
+        })
+
+        NumHistori.forEach((Num) => {
+            Num.style.opacity = '0'
+            setTimeout(function (){
+                Num.style.opacity = '1'
+            } , 1500)
+        })
+        operationopacity.forEach((item) => {
+
+            item.style.opacity = '0'
+            setTimeout(function (){
+                item.style.opacity = '1'
+            } , 1500)
+        })
+
+        iconClearAllHistoriDesktopLight.style.opacity = '0'
+        setTimeout(function (){
+            iconClearAllHistoriDesktopLight.style.opacity = '1'
+        } , 1500)
+
+        HistoriItem.forEach((item) => {
+            item.style.opacity = '0'
+            setTimeout( function () {
+                item.style.opacity = '1'
+                
+            } , 1000)
+        })
+        
+    }
     
 }
+
 
 
 const CloseBoxHistori = () => {
@@ -497,6 +1166,7 @@ const CloseBoxHistori = () => {
     var NumHistori = $.querySelectorAll('.NumberHistori')
     if (localStorage.getItem('ThemeCalculator' ) == 'Dark'){
         HistoriItem = $.querySelectorAll('.HistoriItemDark')
+        iconClearAllHistoriDesktopDark = $.querySelector('.iconClearAllHistoriDesktopDark')
 
         imagHistori.forEach((image) => {
             image.style.opacity = '0'
@@ -509,6 +1179,9 @@ const CloseBoxHistori = () => {
         operationopacity.forEach((item) => {
             item.style.opacity = '0'
         })
+        iconClearAllHistoriDesktopDark.style.opacity = '0'
+        
+
         HistoriItem.forEach((item) => {
             setTimeout( function () {
                 item.style.opacity = '0'
@@ -519,6 +1192,9 @@ const CloseBoxHistori = () => {
 
     }else {
         HistoriItem = $.querySelectorAll('.HistoriItem')
+        iconClearAllHistoriDesktopLight = $.querySelector('.iconClearAllHistoriDesktop')
+
+
         imagHistori.forEach((image) => {
             image.style.opacity = '0'
         })
@@ -530,6 +1206,10 @@ const CloseBoxHistori = () => {
             item.style.opacity = '0'
         })
 
+        iconClearAllHistoriDesktopLight.style.opacity = '0'
+
+        
+
         HistoriItem.forEach((item) => {
             setTimeout( function () {
                 item.style.opacity = '0'
@@ -538,7 +1218,6 @@ const CloseBoxHistori = () => {
         })
         
     }
-
 }
 
 var createDivStart , ItemNextStart
@@ -602,6 +1281,7 @@ function ClearlocalHistori (){
         HistoriOperation.splice(0)
         counterinIndexArry = 0
         CounterHistoriPhone = 0
+        CounterPageClickHistori = 0
         CloseBox()
         CloseBoxHistoriPhone()
 }
@@ -735,23 +1415,26 @@ function AddItemHIstoriPhone (){
     CounterHistoriPhone++
 }
 
-let mapbtnCalculator = $.querySelectorAll('.btnCalculator')[0]
+
 
 function DropBoxHistoriPhone () {
     BoxDropOrClose = true
-    HistoriPhone.classList.add('HistoriPhoneDrop')
+    HistoriSectionMobile.classList.add('HistoriPhoneDrop')
     Version.style.filter = "blur(2px)"
     mapbtnCalculator.style.filter = "blur(2px)"
+    NumberResultOperationDiv.style.filter = "blur(2px)"
     setTimeout(function (){
         showitemHistoriModal()
     },300)
 }
 function CloseBoxHistoriPhone () {
     BoxDropOrClose = false
+    CounterPageClickHistori = 0
     closeBoxHistoriModal()
     setTimeout(function (){
-        HistoriPhone.classList.remove('HistoriPhoneDrop')
+        HistoriSectionMobile.classList.remove('HistoriPhoneDrop')
         Version.style.filter = "blur(0)"
+        NumberResultOperationDiv.style.filter = "blur(0)"
         mapbtnCalculator.style.filter = "blur(0)"
     } , 1100)
 }
@@ -784,6 +1467,7 @@ function closeBoxHistoriModal (){
     
     if (localStorage.getItem('ThemeCalculator' ) == 'Dark'){
         itemHistoriModalCloseDark = $.querySelectorAll('.ItemHistoriPhoneDark')
+        iconClearAllHistoriPhoneAnimeDark = $.querySelector('.iconClearAllHistoriPhoneDark')
 
         NumHistoriModalClsoe.forEach(function (Num){
             Num.style.opacity = '0'
@@ -796,6 +1480,8 @@ function closeBoxHistoriModal (){
         ImageHistoriModalClosr.forEach(function (Image){
             Image.style.opacity = '0'
         })
+
+        iconClearAllHistoriPhoneAnimeDark.style.opacity = '0'
         
         itemHistoriModalCloseDark.forEach(function (itemclose){
             setTimeout(function(){
@@ -805,6 +1491,8 @@ function closeBoxHistoriModal (){
 
     }else {
         itemHistoriModalClose = $.querySelectorAll('.ItemHistoriPhone ')  
+        iconClearAllHistoriPhoneAnimeLight = $.querySelector('.iconClearAllHistoriPhone')
+
 
         NumHistoriModalClsoe.forEach(function (Num){
             Num.style.opacity = '0'
@@ -817,6 +1505,9 @@ function closeBoxHistoriModal (){
         StartOperationHistoriModal.forEach(function (item){
             item.style.opacity = '0'
         })
+
+        iconClearAllHistoriPhoneAnimeLight.style.opacity = '0'
+
 
         itemHistoriModalClose.forEach(function (Close){
             setTimeout(function (){
@@ -833,6 +1524,7 @@ function showitemHistoriModal (){
     ImageHistoriModalClosr = $.querySelectorAll('.iconItem')
     if (localStorage.getItem('ThemeCalculator' ) == 'Dark'){
         itemHistoriModalCloseDark = $.querySelectorAll('.ItemHistoriPhoneDark')
+        iconClearAllHistoriPhoneAnimeDark = $.querySelector('.iconClearAllHistoriPhoneDark')
         itemHistoriModalCloseDark.forEach(function (item){
             item.style.opacity = '0'
             setTimeout(function (){
@@ -851,6 +1543,12 @@ function showitemHistoriModal (){
                     item.style.opacity = '1'
                 } , 1400)
             })
+
+            iconClearAllHistoriPhoneAnimeDark.style.opacity = '0'
+            setTimeout(function (){
+                iconClearAllHistoriPhoneAnimeDark.style.opacity = '1'
+            } , 1400)
+
             ImageHistoriModalClosr.forEach(function (item){
                 item.style.opacity = '0'
                 setTimeout(function (){
@@ -861,6 +1559,7 @@ function showitemHistoriModal (){
         })
     }else{
         itemHistoriModalCloseDark = $.querySelectorAll('.ItemHistoriPhone ')
+        iconClearAllHistoriPhoneAnimeLight = $.querySelector('.iconClearAllHistoriPhone')
         itemHistoriModalCloseDark.forEach(function (item){
             item.style.opacity = '0'
             setTimeout(function (){
@@ -887,7 +1586,41 @@ function showitemHistoriModal (){
                     item.style.opacity = '1'
                 } , 1400 )
             })
+            iconClearAllHistoriPhoneAnimeLight.style.opacity = '0'
+            setTimeout(function (){
+                iconClearAllHistoriPhoneAnimeLight.style.opacity = '1'
+            } , 1400)
         
         })
     }
 }
+
+var CounterPageClickHistori = 0
+document.body.addEventListener('click' , function (event){
+
+    var  HeightHistoriPhoneMobile , LastMapHeightHistori, FirsiMapHeightHistori , FirsiMapHistoriMobile , lastMapHistoriMobile , widthcalculatoriHistoriPage
+    
+    
+    
+    // page X Operation
+    widthcalculatoriHistoriPage = (window.innerWidth -  Number(window.getComputedStyle(Calculator).width.slice(0 , -2))) / 2
+    FirsiMapHistoriMobile = (Number(window.getComputedStyle(Calculator).width.slice(0 , -2)) - Number(window.getComputedStyle(HistoriPhone).width.slice(0 , -2)) ) + widthcalculatoriHistoriPage
+    lastMapHistoriMobile = widthcalculatoriHistoriPage + Number(window.getComputedStyle(Calculator).width.slice(0 , -2))
+    
+    // page Y Operation 
+    HeightHistoriPhoneMobile = (window.innerHeight - Number(window.getComputedStyle(Calculator).height.slice(0 , -2))) / 2 // 117
+    FirsiMapHeightHistori = (Number(window.getComputedStyle(Calculator).height.slice(0 , -2)) - Number(window.getComputedStyle(HistoriPhone).height.slice(0 , -2))) / 2 + HeightHistoriPhoneMobile // 164
+    LastMapHeightHistori =  Number(window.getComputedStyle(HistoriPhone).height.slice(0 , -2)) + FirsiMapHeightHistori
+
+
+    if (window.innerWidth < 840 && BoxDropOrClose == true){
+        if (event.pageY < FirsiMapHeightHistori || event.pageY > LastMapHeightHistori || event.pageX < FirsiMapHistoriMobile || event.pageX > lastMapHistoriMobile ){
+            if (CounterPageClickHistori != 0){
+                DropCalculator()
+            }else {
+                CounterPageClickHistori++
+            }
+        }
+
+    }
+})

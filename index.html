@@ -16,7 +16,6 @@
             <div class="iconNav">
                 <i id="Theme" class="fa-regular fa-moon" title="Swich Theme"></i>
                 <i class="fa-solid fa-clock-rotate-left BtnHIstori" title="Histori"></i>
-                <i class="fa-solid fa-trash ClearHistori " title="Clear All Histori"></i>
             </div>
             <div class="NumberResult-Operation">
             <p class="Result">
@@ -27,36 +26,47 @@
             </p>
         </div>
         <div class="btnCalculator">
-            <button class="ButtonCalculator ButtonOperation BtnAc"> AC </button>
-            <button class="ButtonCalculator ButtonOperation BtnBakcspac" ><i class="fa-solid fa-delete-left"></i></button>
-            <button value="%" class="ButtonCalculator ButtonOperation BtnOperation"><i class="fa-solid fa-percent"></i></button>
-            <button value="/" class="ButtonCalculator ButtonOperation BtnOperation"><i class="fa-solid fa-divide"></i></button>
-            <button value="7" class="ButtonCalculator ButtonNumber"   >7</button>
-            <button value="8" class="ButtonCalculator ButtonNumber"   >8</button>
-            <button value="9" class="ButtonCalculator ButtonNumber"   >9</button>
-            <button value="*"  class="ButtonCalculator ButtonOperation BtnOperation"><i class="fa-solid fa-xmark"></i></button>
-            <button value="4" class="ButtonCalculator ButtonNumber"   >4</button>
-            <button value="5" class="ButtonCalculator ButtonNumber"   >5</button>
-            <button value="6" class="ButtonCalculator ButtonNumber"   >6</button>
-            <button value="-"  class="ButtonCalculator ButtonOperation BtnOperation"><i class="fa-solid fa-minus"></i></button>
-            <button value="1" class="ButtonCalculator ButtonNumber"   >1</button>
-            <button value="2" class="ButtonCalculator ButtonNumber"   >2</button>
-            <button value="3" class="ButtonCalculator ButtonNumber"   >3</button>
-            <button value="+"  class="ButtonCalculator ButtonOperation BtnOperation"><i class="fa-solid fa-plus"></i></button>
-            <button value="0" class="ButtonCalculator ButtonNumber"   >0</button>
-            <button value="." class="ButtonCalculator ButtonNumber"   >.</button>
-            <button  class="ButtonCalculator BtnResult"><i class="fa-solid fa-equals"></i></button>
+            <button class="ButtonCalculator ButtonOperation BtnAc" onmousedown="AllClear()"> AC </button>
+            <button class="ButtonCalculator ButtonOperation BtnBakcspac" onmousedown="BackSpaceOperation()"><i class="fa-solid fa-delete-left"></i></button>
+            <button value="%" class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('%')"><i class="fa-solid fa-percent"></i></button>
+            <button value="/" class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('/')"><i class="fa-solid fa-divide"></i></button>
+            <button value="7" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('7')"  >7</button>
+            <button value="8" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('8')"  >8</button>
+            <button value="9" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('9')"  >9</button>
+            <button value="*"  class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('*')"><i class="fa-solid fa-xmark"></i></button>
+            <button value="4" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('4')"  >4</button>
+            <button value="5" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('5')"  >5</button>
+            <button value="6" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('6')"  >6</button>
+            <button value="-"  class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('-')"><i class="fa-solid fa-minus"></i></button>
+            <button value="1" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('1')"  >1</button>
+            <button value="2" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('2')"  >2</button>
+            <button value="3" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('3')"  >3</button>
+            <button value="+"  class="ButtonCalculator ButtonOperation BtnOperation" onmousedown="OperationResultAdd('+')"><i class="fa-solid fa-plus"></i></button>
+            <button value="0" class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('0')"  >0</button>
+            <button value="." class="ButtonCalculator ButtonNumber" onmousedown="displayNumber('.')"  >.</button>
+            <button  class="ButtonCalculator BtnResult" onmousedown="ResultOpration()"><i class="fa-solid fa-equals"></i></button>
         </div>
         <div class="Version">
             <p>
-            v1.7.2
+            v1.8.2
             </p>
         </div>
         <div class="HistoriPhone">
-            
+            <div class="iconClearAllHistoriPhone">
+                <i class="fa-solid fa-trash ClearHistoriPhone " title="Clear All Histori"></i>
+            </div>
+            <div class="HistoriSectionMobile">
+
+            </div>
         </div>
-        </div>
-        <div class="DropHistori">
+    </div>
+    <div class="DropHistori">
+            <div class="iconClearAllHistoriDesktop">
+                <i class="fa-solid fa-trash ClearHistoriDesktop " title="Clear All Histori"></i>
+            </div>
+            <div class="HistoriSection">
+
+            </div>
             
         </div>
     </div>

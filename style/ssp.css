@@ -20,6 +20,8 @@ body{
     background-color: #ffb178 !important;
     overflow-x: hidden;
     text-align: right;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .CalculatorPosition{
@@ -39,9 +41,7 @@ body{
 .DropCalCulator{
     width: 800px;
     transition: 1.2s ease-in-out width;
-    border-radius: 0;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
+    border-radius: 50px;
 }
 
 .iconNav{
@@ -66,6 +66,7 @@ body{
     background-color: #ebebeb;
     border-radius: 50px;
     box-shadow: -1px 3px 40px  rgba(0, 0, 0, 0.227);
+    position: relative;
 }
 
 .CalculatorDark{
@@ -79,6 +80,9 @@ body{
     padding: 0 4px;
     margin-top: 90px;
     transition: ease-in 0.2s all ;
+    width: 432px ;
+    overflow-x: hidden;
+    direction: rtl;
 }
 
 .ResultDark{
@@ -89,6 +93,9 @@ body{
     color: #b1b2b4;
     font-size: 30px;
     padding:0 2px;
+    width: 428px; 
+    overflow-x: hidden;
+    direction: ltr;
 }
 
 .NumberOperationDark{
@@ -102,6 +109,7 @@ body{
     gap: 30px 25px;
     font-size: 25px;
     padding: 40px 0;
+    transition: 0.3s filter ease-in;
 }
 
 .ButtonCalculator{
@@ -152,19 +160,25 @@ body{
     display: grid;
     justify-content: center;
     font-size: 16px;
+    transition: 0.3s filter ease-in;
 }
 
 .VersionDark{
     color: #fff;
+    transition: 0.3s filter ease-in;
 }
 
 .DropHistori{
     overflow-y: scroll;
+    overflow-x: hidden;
+    height: 870.988px;
+    margin-top: 38px;
 }
+
 
 .HistoriItem{
     color: #1e2f3f;
-    background-color: rgba(129, 143, 154, 0.344);
+    background-color: #f0a165d3;
     height: 100px;
     display: grid;
     grid-template-columns: 4fr 1fr;
@@ -174,7 +188,7 @@ body{
 }
 
 .HistoriItemDark{
-    background-color: rgba(129, 143, 154, 0.344);
+    background-color: #c5763ab8;
     color: #ebebeb;
     height: 100px;
     display: grid;
@@ -213,86 +227,77 @@ body{
     justify-content: center;
 }
 
-.HistoriModal {
-    display: none;
-    width: 400px;
-    height: 650px;
-    background-color: #e2e2e2;
-    position: fixed;
-    transform: translate(-50% , -50%);
-    top: 55%;
-    left: 50%;
-    border-radius: 10px;
+.HistoriPhone{
+    width: 0;
+    height: 853.195px;
+    background-color: #8d99aeb5;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0 ,-50%);
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
     overflow-y: scroll;
-    overflow-x: hidden;
+    transition: 1s ease-in-out width;
 }
 
-.iconCloseHistori{
-    display: none;
-    position: fixed;
-    transform: translate(-50% , -50%);
-    left: 50%;
-    top: 8%;
-    width: 70px;
-    cursor: pointer;
+.HistoriPhoneDrop{
+    width: 350px;
+    transition: 1s ease-in-out width;
+    
 }
 
-.HistoriModalDark{
-    background-color: #313e50;
+.HistoriPhoneDark{
+    background-color: #2b3d4eb8;
 }
 
-@keyframes DropModal {
-    from{
-        top: -50%;
-    } 
-}
-
-@keyframes CloseHistori {
-    to{
-        top: -50%;
-    }
-}
-
-.itemHistoriModal{
-    height: 110px;
-    border: 0.5px solid #ffe3bb;
-    color: #1e2f3f;
-    background-color: rgba(129, 143, 154, 0.344);
+.ItemHistoriPhone{
+    background-color: #f0a165d3;
+    height: 100px;
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 5fr 1fr;
+    border: #8686879e 0.1px  solid;
+    opacity: 0;
+    transition: 0.2s ease-in opacity;
+}
+
+.ItemHistoriPhoneDark{
+    background-color: #c5763ab8;
+    color: #fff;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    border: rgb(130, 130, 130) 0.1px  solid;
+    opacity: 0;
+    transition: 0.2s ease-in opacity;
+}
+
+.NumberItem{
+    display: grid;
     align-items: center;
-    transition: 0.2s opacity ease-in-out;
+    text-align: left;
+    margin-left: 5px;
+    font-size: 22px;
+    transition: 0.2s ease-in opacity;
 }
 
-.itemHistoriModalDark{
-    height: 110px;
-    color: #ebebeb;
-    background-color: rgba(129, 143, 154, 0.344);
-    border: 0.5px solid #ffe3bb;
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    align-items: center;
-    transition: 0.2s opacity ease-in-out;
-}
-
-.NumHistoriModal{
-    transition: 0.2s opacity ease-in-out;
-}
-
-.imageHistoriModal{
-    display: grid;
-    grid-template-columns: repeat(2 , auto);
-    height: 80%;
+.iconItem{
+    font-size: 20px;
+    display: flex;
     align-items: flex-end;
-    transition: 0.2s opacity ease-in-out;
+    margin-bottom: 5px;
+    justify-content: space-around;
+    direction: rtl;
+    transition: 0.2s ease-in opacity;
 }
 
-.imageHistoriModal i {
+.iconItem i {
     cursor: pointer;
 }
 
-.startOperationModal{
-    font-size: 30px;
-    width: 370px;
-    text-align: center;
+.StartOperationPhone{
+    align-self: center;
+    justify-content: end;
+    font-size: 22px;
+    transition: 0.2s ease-in opacity;
 }

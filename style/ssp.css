@@ -36,6 +36,8 @@ body{
     box-shadow: -1px 3px 40px  rgba(0, 0, 0, 0.227);
     transition: 1.2s ease-in-out width;
     border-radius: 50px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .DropCalCulator{
@@ -77,7 +79,6 @@ body{
 .Result{
     color: #1e2f3f;
     font-size: 110px;
-    padding: 0 4px;
     margin-top: 90px;
     transition: ease-in 0.2s all ;
     width: 432px ;
@@ -92,7 +93,6 @@ body{
 .NumberOperation{
     color: #b1b2b4;
     font-size: 30px;
-    padding:0 2px;
     width: 428px; 
     overflow-x: hidden;
     direction: ltr;

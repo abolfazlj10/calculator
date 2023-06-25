@@ -63,6 +63,8 @@ ButtonOperation.forEach((opera) => {
     opera.addEventListener('click' , function (){
         var MaxLength = NumerOperation.innerHTML.length - 1
         if (NumerOperation.innerHTML[MaxLength] == "+" || NumerOperation.innerHTML[MaxLength] == "-" || NumerOperation.innerHTML[MaxLength] == "*" || NumerOperation.innerHTML[MaxLength] == "/" || NumerOperation.innerHTML[MaxLength] == "%"){
+            NumerOperation.innerHTML = NumerOperation.innerHTML.slice(0 , -1)
+            NumerOperation.innerHTML += opera.value
             return false
         }else {
             NumerOperation.innerHTML += opera.value

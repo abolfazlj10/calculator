@@ -81,7 +81,6 @@ body{
     font-size: 110px;
     margin-top: 90px;
     transition: ease-in 0.2s all ;
-    width: 432px ;
     overflow-x: hidden;
     direction: rtl;
 }
@@ -93,7 +92,6 @@ body{
 .NumberOperation{
     color: #b1b2b4;
     font-size: 30px;
-    width: 428px; 
     overflow-x: hidden;
     direction: ltr;
 }

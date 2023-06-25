@@ -1,4 +1,25 @@
-@media only screen and (max-width:485px) {
+@media only screen and (max-width:1000px) {
+    body{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+}
+@media only screen and (max-width:839px) {
+    .Calculator{
+        transition: 0.5s ease-in width;
+    }
+    .CalculatorPosition{
+        transition: 0.5s ease-in width;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .CalculatorPosition{
+        margin: 5px auto;
+    }
+}
+@media only screen and (max-width:490px) {
     .btnCalculator{
         font-size: 20px;
     }
@@ -36,11 +57,14 @@
     .HistoriPhone{
         height: 800.195px;
     }
+    .HistoriPhoneDrop {
+        width: 317px;
+    }
 }
 
 
 
-@media only screen and (max-width:459px) {
+@media only screen and (max-width:470px) {
     .Calculator{
         width: 428px !important;
         padding: 0 0 !important;
@@ -74,7 +98,7 @@
 
 
 
-@media only screen and (max-width:436px) {
+@media only screen and (max-width:448px) {
     .Calculator{
         width: 400px !important; 
         height: 840px !important;
@@ -117,8 +141,11 @@
     .HistoriPhoneDrop{
         width: 300px;
     }
+    .StartOperationPhone {
+        font-size: 20px;
+    }
 }
-@media only screen and (max-width:407px) {
+@media only screen and (max-width:420px) {
     .Calculator{
         width: 380px !important; 
         height: 780px !important;
@@ -147,9 +174,12 @@
     .Version{
         margin-top: 0;
     }
+    .HistoriPhone {
+        height: 705.195px;
+    }
 }
 
-@media only screen and (max-width:390px) {
+@media only screen and (max-width:400px) {
     .Calculator{
         width: 361px !important;
         height: 768px !important;
@@ -188,5 +218,791 @@
     }
     .HistoriPhoneDrop{
         width: 265px;
+    }
+    .StartOperationPhone {
+        font-size: 18px;
+    }
+    .ItemHistoriPhoneDark{
+        height: 80px;
+    }
+    .ItemHistoriPhone{
+        height: 80px;
+    }
+}
+
+@media only screen and (max-width:381px) {
+    .Calculator{
+        width: 335px !important;
+        height: 655px !important;
+    }
+    .CalculatorPosition {
+        width: 335px !important;
+        height: 655px !important;
+    }
+    .Result {
+        font-size: 60px;
+        padding-right: 7px;
+    }
+    .NumberOperation {
+        font-size: 15px;
+        padding-right: 7px;
+    }
+    .btnCalculator{
+        padding: 20px 6px 20px 14px;
+        font-size: 15px;
+    }
+    .ButtonCalculator {
+        width: 57.184px !important;
+        height: 54.699px !important;
+    }
+    .BtnResult{
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right:4px;
+    }
+    .Version{
+        font-size: 12px;
+    }
+    .iconNav i {
+        font-size: 15px;
+    }
+    .HistoriPhone {
+        height: 595px;
+    }
+    .ResultOperation {
+        font-size: 16px;
+    }
+    .iconItem i {
+        font-size: 15px;
+    }
+    .HistoriPhoneDrop {
+        width: 244px;
+    }
+}
+
+@media only screen and (max-width:355px) {
+    .Calculator{
+        width: 300px !important;
+        height: 625px !important;
+        border-radius: 40px;
+    }
+    .CalculatorPosition {
+        width: 300px !important;
+        height: 625px !important;
+        border-radius: 40px;
+    }
+    .Result{
+        font-size: 55px;
+    }
+    .btnCalculator{
+        font-size: 13px;
+    }
+    .ButtonCalculator {
+        width: 50.184px !important;
+        height: 45.699px !important;
+    }
+    .BtnResult{
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right: 5px;
+    }
+    .HistoriPhoneDrop {
+        width: 230px;
+    }
+    .HistoriPhone {
+        height: 555px;
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .Calculator{
+        width: 260px !important;
+        height: 534px !important;
+        border-radius: 30px;
+    }
+    .CalculatorPosition {
+        width: 260px !important;
+        height: 534px !important;
+        border-radius: 30px;
+    }
+    .Result {
+        margin-top: 23px;
+        font-size: 50px;
+    }
+    .ButtonCalculator {
+        width: 44.184px !important;
+        height: 39.699px !important;
+    }
+    .btnCalculator{
+        gap: 18px 20px !important;
+        padding: 20px 8px 20px 10px;
+    }
+    .BtnResult{
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right: 2px;
+    }
+    .HistoriPhone {
+        height: 463px;
+    }
+    .HistoriPhoneDrop {
+        width: 199px;
+    }
+    .ItemHistoriPhoneDark{
+        height: 60px;
+    }
+    .ItemHistoriPhone{
+        height: 60px;
+    }
+    .ResultOperation {
+        font-size: 13px;
+    }
+    .iconItem i {
+        font-size: 13px;
+    }
+    .StartOperationPhone{
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width:280px) {
+    .Calculator{
+        width: 235px !important;
+        height: 467px !important;
+    }
+    .CalculatorPosition {
+        width: 235px !important;
+        height: 467px !important;
+    }
+    .ButtonCalculator {
+        width: 42.184px !important;
+        height: 39.699px !important;
+    }
+    .btnCalculator {
+        gap: 14px 12px !important;
+        padding: 2px 8px 16px 10px;
+        font-size: 11px;
+    }
+    .BtnResult{
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right: 2px;
+    }
+    .iconNav i {
+        font-size: 13px;
+    }
+    .HistoriPhoneDrop {
+        width: 175px;
+    }
+    .HistoriPhone {
+        height: 405px;
+    }
+    .iconItem i {
+        font-size: 11px;
+    }
+    .Result{
+        font-size: 40px;
+    }
+    .NumberOperation{
+        font-size: 13px;
+    }
+    .StartOperationPhone {
+        font-size: 13px;
+    }
+    .HistoriPhoneDrop {
+        width: 160px;
+    }
+}
+
+@media (min-width:490px) and (max-height:967px) {
+    .CalculatorPosition{
+        height: 900px;
+    }
+    .Calculator{
+        height: 900px;
+    }
+    .Result{
+        margin-top: 70px;
+        margin-bottom: 0;
+    }
+    .NumberOperationDark{
+        margin-bottom: 0;
+    }
+    .HistoriPhone{
+        height: 809.195px;
+    }
+    .HistoriPhoneDrop{
+        width: 328px;
+    }
+}
+
+@media (min-width:490px) and (max-height:920px) {
+    .Calculator{
+        height: 854px;
+        width: 427px;
+    }
+    .CalculatorPosition {
+        height: 854px;
+        width: 427px;
+    }
+    .btnCalculator{
+        padding: 21px 0;
+    }
+    .Result{
+        margin-top: 45px;
+    }
+    .ButtonCalculator{
+        width: 76.184px;
+    }
+    .BtnResult{
+        grid-column: 3/5;
+        width: inherit !important;
+    }
+    .HistoriPhoneDrop {
+        width: 304px;
+    }
+    .HistoriPhone {
+        height: 773.195px;
+    }
+}
+
+@media (min-width:490px) and (max-height:874px) {
+    .Calculator{
+        padding: 0 25px 0px 25px;
+        height: 822px;
+    }
+    .CalculatorPosition {
+        height: 822px;
+    }
+    .Result{
+        font-size: 90px;
+    }
+    .NumberOperation{
+        font-size: 25px;
+    }
+    .Version p {
+        margin-bottom: 0;
+    }
+    .HistoriPhone {
+        height: 742.195px;
+    }
+}
+@media (min-width:490px) and (max-height:842px) {
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+
+@media (min-width:471px) and (max-width:489px) and (max-height:899px){
+    .Calculator{
+        width: 435px;
+        height: 848px;
+    }
+    .CalculatorPosition{
+        width: 435px;
+        height: 848px;
+    }
+    .Result{
+        margin-top: 64px;
+    }
+    .btnCalculator{
+        padding: 18px 2px 18px 6px;
+    }
+    .Version p {
+        margin-bottom: 0;
+    }
+    .BtnResult{
+        margin-right: 3px;
+    }
+    .HistoriPhone {
+        height: 767.195px;
+    }
+}
+@media (min-width:471px) and (max-width:489px) and (max-height:868px){
+    .Calculator{
+        height: 826px;
+    }
+    .CalculatorPosition {
+        height: 826px;
+    }
+    
+    .ButtonCalculator {
+        width: 76.184px !important;
+        height: 64.699px !important;
+    }
+    .BtnResult {
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right: 3px;
+    }
+    .Result {
+        margin-top: 68px;
+    }
+    .HistoriPhone {
+        height: 753.195px;
+    }
+}
+@media (min-width:471px) and (max-width:489px) and (max-height:846px){
+    .Calculator{
+        height: 805px;
+    }
+    .CalculatorPosition {
+        height: 805px;
+    }
+    .HistoriPhone {
+        height: 729.195px;
+    }
+}
+@media (min-width:471px) and (max-width:489px) and (max-height:822px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:449px) and (max-width:470px) and (max-height:899px){
+    
+    .Calculator{
+        height: 860px;
+    }
+    
+    .CalculatorPosition{
+        height: 860px;
+    }
+    .Result{
+        margin-top: 50px;
+    }
+    .btnCalculator {
+        padding: 20px 2px 30px 15px;
+    }
+    .HistoriPhone {
+        height: 779.195px;
+    }
+}
+@media (min-width:449px) and (max-width:470px) and (max-height:880px){
+    .Calculator{
+        height: 835px;
+    }
+    .CalculatorPosition {
+        height: 835px;
+    }
+    .HistoriPhone {
+        height: 753.195px;
+    }
+}
+@media (min-width:449px) and (max-width:470px) and (max-height:855px){
+    .Calculator{
+        height: 825px;
+    }
+    .CalculatorPosition {
+        height: 825px;
+    }
+    .btnCalculator {
+        padding: 4px 2px 23px 15px;
+    }
+}
+@media (min-width:449px) and (max-width:470px) and (max-height:845px){
+    .Calculator{
+        height: 805px;
+    }
+    .CalculatorPosition {
+        height: 805px;
+    }
+    .HistoriPhone {
+        height: 719.195px;
+    }
+}
+@media (min-width:449px) and (max-width:470px) and (max-height:825px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:419px) and (max-width:448px) and (max-height:860px){
+    .Calculator{
+        height: 813px !important;
+    }
+    .CalculatorPosition{
+        height: 813px !important;
+    }
+    .Version p {
+        margin-bottom: 0;
+    }
+    .Result{
+        margin-top: 60px;
+    }
+    .HistoriPhone {
+        height: 724.195px;
+    }
+}
+@media (min-width:419px) and (max-width:448px) and (max-height:833px){
+    .Calculator{
+        height: 786px !important;
+    }
+    .CalculatorPosition {
+        height: 786px !important;
+    }
+    .Result{
+        margin-top: 50px;
+    }
+    .btnCalculator{
+        padding: 27px 20px;
+    }
+    .HistoriPhoneDrop {
+        width: 281px;
+    }
+    .HistoriPhone{
+        height: 706px;
+    }    
+}
+@media (min-width:419px) and (max-width:448px) and (max-height:806px){
+    .Calculator{
+        height: 760px !important;
+    }
+    .CalculatorPosition {
+        height: 760px !important;
+    }
+    .Result {
+        margin-top: 25px;
+    }
+    .HistoriPhone {
+        height: 671px;
+    }
+}
+@media (min-width:419px) and (max-width:448px) and (max-height:780px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:401px) and (max-width:420px) and (max-height:800px){
+    .CalculatorPosition{
+        height: 760px !important;
+    }
+    .Calculator{
+        height: 760px !important;
+    }
+    .Result{
+        margin-top: 50px;
+    }
+    .btnCalculator {
+        padding: 7px 3px 20px 14px;
+    }
+    .BtnResult{
+        margin-right: 5px;
+    }
+    .HistoriPhone {
+        height: 676.195px;
+    }
+    .ItemHistoriPhoneDark {
+        height: 89px;
+    }    
+    .ItemHistoriPhone {
+        height: 89px;
+    }    
+}
+@media (min-width:401px) and (max-width:420px) and (max-height:780px){
+    .Calculator{
+        height: 740px !important;
+    }
+    .CalculatorPosition {
+        height: 740px !important;
+    }
+    .ButtonCalculator{
+        height: 57.699px !important;
+    }
+    .btnCalculator {
+        padding: 7px 3px 12px 14px;
+    }
+    .HistoriPhone {
+        height: 646.195px;
+    }
+}
+@media (min-width:401px) and (max-width:420px) and (max-height:760px){
+    .Calculator{
+        height: 718px !important;
+    }
+    .CalculatorPosition {
+        height: 718px !important;
+    }
+    .Result {
+        margin-top: 16px;
+    }
+}
+@media (min-width:401px) and (max-width:420px) and (max-height:738px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:382px) and (max-width:400px) and (max-height:788px){
+    .Calculator{
+        height: 733px !important;
+    }
+    .CalculatorPosition{
+        height: 733px !important;
+    }
+    .Result {
+        margin-top: 23px;
+    }
+    .HistoriPhone {
+        height: 658.195px;
+    }
+    
+}
+@media (min-width:382px) and (max-width:400px) and (max-height:753px){
+    .CalculatorPosition {
+        height: 716px !important;
+    }
+    .Calculator{
+        height: 716px !important;
+    }
+    .btnCalculator {
+        padding: 20px 12px 11px 14px;
+    }
+    .Version p {
+        margin-bottom: 0;
+    }
+    .HistoriPhone {
+        height: 644.195px;
+    }
+}
+
+@media (min-width:382px) and (max-width:400px) and (max-height:736px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:356px) and (max-width:381px) and (max-height:675px){
+    .Calculator{
+        width: 319px !important;
+        height: 630px !important;
+    }
+    .CalculatorPosition{
+        width: 319px !important;
+        height: 630px !important;
+    }
+    .ButtonCalculator {
+        width: 54.184px !important;
+        height: 48.699px !important;
+    }
+    .BtnResult {
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right: 3px;
+    }
+    .HistoriPhone {
+        height: 566px;
+    }
+    .HistoriPhoneDrop {
+        width: 226px;
+    }
+    .ItemHistoriPhoneDark {
+        height: 70px;
+    }
+    .ItemHistoriPhone{
+        height: 70px;
+    }
+}
+
+@media (min-width:356px) and (max-width:381px) and (max-height:650px){
+    .Calculator{
+        height: 611px !important;
+    }
+    .CalculatorPosition{
+        height: 611px !important;
+    }
+    .btnCalculator {
+        padding: 0px 6px 12px 14px;
+        font-size: 15px;
+    }
+    .HistoriPhone {
+        height: 548px;
+    }
+}
+@media (min-width:356px) and (max-width:381px) and (max-height:631px){
+    .Calculator{
+        height: 590px !important;
+    }
+    .CalculatorPosition {
+        height: 590px !important;
+    }
+    .Result {
+        margin-top: 21px;
+    }
+    .btnCalculator{
+        padding: 0px 6px 23px 14px;
+    }
+    .HistoriPhone {
+        height: 526px;
+    }
+}
+
+@media (min-width:356px) and (max-width:381px) and (max-height:610px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:321px) and (max-width:355px) and (max-height:645px){
+    .Calculator{
+        height: 607px !important;
+    }
+    .CalculatorPosition{
+        height: 607px !important;
+    }
+    .btnCalculator {
+        padding: 4px 6px 20px 14px;
+    }
+    .HistoriPhone {
+        height: 539px;
+    }
+}
+@media (min-width:321px) and (max-width:355px) and (max-height:627px){
+    .Calculator{
+        height: 584px !important;
+    }
+    .CalculatorPosition {
+        height: 584px !important;
+    }
+    .Result {
+        margin-top: 28px;
+    }
+    .HistoriPhone {
+        height: 518px;
+    }
+    .HistoriPhoneDrop {
+        width: 216px;
+    }
+}
+
+
+@media (min-width:321px) and (max-width:355px) and (max-height:604px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:281px) and (max-width:320px) and (max-height:554px){
+    .Calculator{
+        width: 246px !important;
+        height: 501px !important;
+    }
+    .CalculatorPosition{
+        width: 246px !important;
+        height: 501px !important;
+    }
+    .ButtonCalculator {
+        width: 41.184px !important;
+        height: 36.699px !important;
+    }
+    .btnCalculator {
+        padding: 9px 8px 13px 10px;
+    }
+    .BtnResult {
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right: 1px;
+    }
+    .iconNav i {
+        font-size: 12px;
+    }
+    .HistoriPhone {
+        height: 440px;
+    }
+    .HistoriPhoneDrop {
+        width: 185px;
+    }
+}
+@media (min-width:281px) and (max-width:320px) and (max-height:521px){
+    .Calculator{
+        height: 476px !important;
+    }
+    .CalculatorPosition{
+        height: 476px !important;
+    }
+    .ButtonCalculator {
+        width: 41.184px !important;
+        height: 36.699px !important;
+    }
+    .btnCalculator{
+        gap: 14px 20px !important;
+        padding: 9px 8px 8px 10px;
+    }
+    .BtnResult {
+        grid-column: 3/5;
+        width: inherit !important;
+        margin-right: 1px;
+    }
+    .HistoriPhone {
+        height: 424px;
+    }
+    .HistoriPhoneDrop {
+        width: 185px;
+    }
+}
+@media (min-width:281px) and (max-width:320px) and (max-height:496px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
+    }
+}
+@media (min-width:255px) and (max-width:280px) and (max-height:487px){
+    .Calculator{
+        height: 455px !important;
+    }
+    .CalculatorPosition{
+        height: 455px !important;
+    }
+    .btnCalculator{
+        padding: 2px 8px 8px 10px;
+    }
+    .Version p {
+        margin-bottom: 0;
+        font-size: 10px;
+    }
+    .iconNav i {
+        font-size: 12px;
+    }
+    .HistoriPhone {
+        height: 384px;
+    }
+}
+@media (min-width:255px) and (max-width:280px) and (max-height:475px){
+    .ButtonCalculator{
+        height: 37.699px !important;
+    }
+    .CalculatorPosition {
+        height: 441px !important;
+    }
+    .Calculator{
+        height: 441px !important;
+    }
+}
+@media (min-width:255px) and (max-width:280px) and (max-height:461px){
+    body {
+        display: block;
+    }
+    .CalculatorPosition{
+        margin: 10px auto;
     }
 }

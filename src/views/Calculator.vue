@@ -3,8 +3,8 @@
         <div :class="[(store.mode == 'Light' ? 'CalculatorPosition' : 'CalculatorPositionDark') , (store.classDropCalculator ? 'DropCalCulator' : '')]">
             <div :class="(store.mode == 'Light') ? 'Calculator' : 'CalculatorDark'">
                 <div class="iconNav">
-                    <i @click="store.DarkOrLight()" id="Theme"  :class="(store.mode == 'Light') ? 'fa-regular fa-moon' : 'fa-regular fa-sun IconDark'" title="Swich Theme"></i>
-                    <i @click="store.DropCalculator()"  :class="(store.mode == 'Light') ? '' : ' IconDark'" class="fa-solid fa-clock-rotate-left BtnHIstori" title="Histori"></i>
+                    <i @click="store.DarkOrLight()" id="Theme"  :class="(store.mode == 'Light') ? 'fa-regular fa-moon' : 'fa-regular fa-sun IconDark'" title="Swich Theme . key d"></i>
+                    <i @click="store.DropCalculator()"  :class="(store.mode == 'Light') ? '' : ' IconDark'" class="fa-solid fa-clock-rotate-left BtnHIstori" title="Histori . key h"></i>
                 </div>
                 <div class="NumberResult-Operation" :class="(store.HistoriSectionMobileStyleDrop) ? 'blurClc' : ''">
                 <p  :class="(store.mode == 'Light') ? 'Result' : 'ResultDark' " :style="store.styleobject" >
@@ -37,7 +37,7 @@
             </div>
             <div :class="(store.mode == 'Light') ? 'Version' : 'VersionDark' ">
                 <p :class=" (store.HistoriSectionMobileStyleDrop) ? 'blurClc' : ''">
-                v2.1.2
+                v2.2.2
                 </p>
             </div>
 
@@ -71,7 +71,7 @@
             <div class="DropHistori">
                 
                 <div @click="store.ClearlocalHistori" class="iconClearAllHistoriDesktop" :class="(store.mode == 'Light') ? 'iconClearAllHistoriDesktop' : 'iconClearAllHistoriDesktopDark '">
-                    <i :class="(store.mode == 'Light') ? 'ClearHistoriDesktop' : 'IconDark'" class="fa-solid fa-trash  " title="Clear All Histori"></i>
+                    <i :class="(store.mode == 'Light') ? 'ClearHistoriDesktop' : 'IconDark'" class="fa-solid fa-trash  " title="Clear All Histori . key m"></i>
                 </div>
 
                 <div class="HistoriSection">

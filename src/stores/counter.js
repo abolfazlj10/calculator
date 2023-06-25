@@ -400,6 +400,18 @@ export const useCounterStore = defineStore({
       case 'Backspace':
         this.BackSpaceOperation()
           break;
+      case 'c':
+        this.AllClear()
+          break;
+      case 'h':
+        this.DropCalculator()
+          break;
+      case 'm':
+        this.ClearlocalHistori()
+          break;
+      case 'd':
+        this.DarkOrLight()
+          break;
     }
   },
 
@@ -928,8 +940,7 @@ export const useCounterStore = defineStore({
   },
 
   CopyResult (event){
-    var ElementTOCopy
-    ElementTOCopy = event.target.parentElement.parentElement.children[0].children[0].getAttribute('data-Result')
+    let ElementTOCopy = event.target.parentElement.parentElement.children[0].children[0].getAttribute('data-Result')
     navigator.clipboard.writeText(ElementTOCopy);
   },
 

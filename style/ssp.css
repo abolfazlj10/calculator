@@ -178,22 +178,20 @@ body{
 
 .HistoriItem{
     color: #1e2f3f;
-    background-color: #f0a165d3;
+    background-color: rgba(0, 0, 0, 0);
     height: 100px;
     display: grid;
     grid-template-columns: 4fr 1fr;
-    border: #ffe3bb 0.5px solid;
     opacity: 0;
     transition: 0.2s ease-in opacity;
 }
 
 .HistoriItemDark{
-    background-color: #c5763ab8;
+    background-color: rgba(0, 0, 0, 0);
     color: #ebebeb;
     height: 100px;
     display: grid;
     grid-template-columns: 4fr 1fr;
-    border: #ffffff2e 0.5px solid;
     opacity: 0;
     transition: 0.2s ease-in opacity;
 }

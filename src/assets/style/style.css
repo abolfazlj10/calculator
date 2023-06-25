@@ -309,14 +309,22 @@ a{
 .IconHistori i {
     cursor: pointer;
 }
-
-.NextOperation{
-    font-size: 30px;
-    width: 300px;
-    display: grid;
-    align-items: center;
+.HistoriStartItem{
+    color: #1e2f3f;
+    height: 70px;
+    display: flex;
     justify-content: center;
+    transition: 0.2s ease-in opacity;
 }
+
+.HistoriStartItemDark{
+    color: #ebebeb;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    transition: 0.2s ease-in opacity;
+}
+
 
 .HistoriPhone{
     width: 0;
@@ -348,6 +356,7 @@ a{
 }
 
 .ItemHistoriPhone{
+    color: #1e2f3f;
     height: 100px;
     display: grid;
     grid-template-columns: 5fr 1fr;
@@ -360,6 +369,24 @@ a{
     height: 100px;
     display: grid;
     grid-template-columns: 5fr 1fr;
+    opacity: 1;
+    transition: 0.2s ease-in opacity;
+}
+
+.HistoriStartItemPhone{
+    color: #1e2f3f;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+    transition: 0.2s ease-in opacity;
+}
+
+.HistoriStartItemDarkPhone{
+    color: #fff;
+    height: 100px;
+    display: flex;
+    justify-content: center;
     opacity: 1;
     transition: 0.2s ease-in opacity;
 }
@@ -396,41 +423,43 @@ a{
     transition: 0.2s ease-in opacity;
 }
 
+
+
+
 @media only screen and (max-width:839px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         transition: 0.5s ease-in width;
     }
-    .CalculatorPosition{
+    .CalculatorPosition , .CalculatorPositionDark{
         transition: 0.5s ease-in width;
     }
+    
 }
 
 @media only screen and (max-width:600px) {
-    .CalculatorPosition{
+    .CalculatorPosition , .CalculatorPositionDark{
         margin: 5px auto;
     }
 }
 @media only screen and (max-width:530px) {
-    .btnCalculator{
-        font-size: 20px;
-    }
-    .Calculator{
+    .CalculatorDark , .Calculator{
         width: 450px;  
         height: 879px;
         padding: 0 15px;   
     }
-    .CalculatorPosition{
+    .CalculatorPosition , .CalculatorPositionDark{
         width: 450px;
         height: 879px;
     }  
-    .Result{
+    .Result , .ResultDark{
         font-size: 100px;
         margin-top: 80px;
     }
     .btnCalculator{
         gap: 25px 20px !important;
+        font-size: 20px;
     }
-    .ButtonCalculator{
+    .ButtonCalculator , .ButtonCalculatorDark{
         width: 80.184px !important;
         height: 68.699px !important;
     }
@@ -442,10 +471,10 @@ a{
     .ResultOperation{
         font-size: 20px;
     }
-    .Version{
+    .Version , .VersionDark{
         margin-top: -10px;
     }
-    .HistoriPhone{
+    .HistoriPhone , .HistoriPhoneDark{
         height: 800.195px;
     }
     .HistoriPhoneDrop {
@@ -456,25 +485,25 @@ a{
 
 
 @media only screen and (max-width:510px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 428px !important;
         padding: 0 0 !important;
         padding: 0 0 !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition , .CalculatorPositionDark{
         width: 428px !important; 
         margin: 10px auto;    
     }
-    .Result{
+    .Result , .ResultDark{
         width: 420px;
     }
-    .NumberOperation{
+    .NumberOperation , .NumberOperationDark{
         width: 410px;
     }
     .btnCalculator{
         padding: 40px 2px 40px 15px;
     }
-    .ButtonCalculator{
+    .ButtonCalculator , .ButtonCalculatorDark{
         width: 72.184px !important;
         height: 66.699px !important;
     }
@@ -490,26 +519,26 @@ a{
 
 
 @media only screen and (max-width:488px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 400px !important; 
         height: 840px !important;
         
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         width: 400px !important;
         height: 840px !important;
     }  
-    .Result{
+    .Result , .ResultDark{
         width: 100%;
         padding-right: 15px;
         font-size: 90px;
     }
-    .NumberOperation{
+    .NumberOperation , .NumberOperationDark{
         width: 100%;
         padding-right: 15px;
         font-size: 25px;
     }
-    .ButtonCalculator{
+    .ButtonCalculator , .ButtonCalculatorDark{
         width: 65.184px !important;
         height: 61.699px !important;
     }
@@ -526,23 +555,23 @@ a{
         padding: 40px 20px;
         font-size: 18px;
     }
-    .HistoriPhone{
+    .HistoriPhone , .HistoriPhoneDark{
         height: 763.195px ;
     }
     .HistoriPhoneDrop{
         width: 300px;
     }
-    .StartOperationPhone {
+    .StartOperationPhone , .StartOperationPhoneDark {
         font-size: 20px;
     }
 }
 @media only screen and (max-width:460px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 380px !important; 
         height: 780px !important;
         
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         width: 380px !important;
         height: 780px !important;
     } 
@@ -553,29 +582,29 @@ a{
     .BtnResult{
         margin-right: 6px;
     }
-    .HistoriPhone{
+    .HistoriPhone , .HistoriPhoneDark{
         height: 724.195px ;
     }
     .HistoriPhoneDrop{
         width: 290px;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 55px;
     }
-    .Version{
+    .Version , .VersionDark{
         margin-top: 0;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 705.195px;
     }
 }
 
 @media only screen and (max-width:440px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 361px !important;
         height: 768px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         width: 361px !important;
         height: 768px !important;
     }
@@ -583,19 +612,19 @@ a{
         padding: 20px 12px 20px 14px;
         font-size: 17px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 690.195px;
     }
-    .Result{
+    .Result , .ResultDark{
         font-size: 80px;
     }
-    .NumberOperation{
+    .NumberOperation , .NumberOperationDark{
         font-size: 20px;
     }
     .BtnResult{
         margin-right: 3px;
     }
-    .Version{
+    .Version , .VersionDark{
         font-size: 15px;
     }
     .iconNav i {
@@ -610,31 +639,28 @@ a{
     .HistoriPhoneDrop{
         width: 265px;
     }
-    .StartOperationPhone {
+    .StartOperationPhone , .StartOperationPhoneDark {
         font-size: 18px;
     }
-    .ItemHistoriPhoneDark{
-        height: 80px;
-    }
-    .ItemHistoriPhone{
+    .ItemHistoriPhone , .ItemHistoriPhoneDark{
         height: 80px;
     }
 }
 
 @media only screen and (max-width:421px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 335px !important;
         height: 655px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         width: 335px !important;
         height: 655px !important;
     }
-    .Result {
+    .Result , .ResultDark {
         font-size: 60px;
         padding-right: 7px;
     }
-    .NumberOperation {
+    .NumberOperation , .NumberOperationDark {
         font-size: 15px;
         padding-right: 7px;
     }
@@ -642,7 +668,7 @@ a{
         padding: 20px 6px 20px 14px;
         font-size: 15px;
     }
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 57.184px !important;
         height: 54.699px !important;
     }
@@ -651,13 +677,13 @@ a{
         width: inherit !important;
         margin-right:4px;
     }
-    .Version{
+    .Version , .VersionDark{
         font-size: 12px;
     }
     .iconNav i {
         font-size: 15px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 595px;
     }
     .ResultOperation {
@@ -672,23 +698,23 @@ a{
 }
 
 @media only screen and (max-width:395px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 300px !important;
         height: 625px !important;
         border-radius: 40px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         width: 300px !important;
         height: 625px !important;
         border-radius: 40px;
     }
-    .Result{
+    .Result , .ResultDark{
         font-size: 55px;
     }
     .btnCalculator{
         font-size: 13px;
     }
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 50.184px !important;
         height: 45.699px !important;
     }
@@ -700,27 +726,27 @@ a{
     .HistoriPhoneDrop {
         width: 230px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 555px;
     }
 }
 
 @media only screen and (max-width:360px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 260px !important;
         height: 534px !important;
         border-radius: 30px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         width: 260px !important;
         height: 534px !important;
         border-radius: 30px;
     }
-    .Result {
+    .Result , .ResultDark {
         margin-top: 23px;
         font-size: 50px;
     }
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 44.184px !important;
         height: 39.699px !important;
     }
@@ -733,16 +759,13 @@ a{
         width: inherit !important;
         margin-right: 2px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 463px;
     }
     .HistoriPhoneDrop {
         width: 199px;
     }
-    .ItemHistoriPhoneDark{
-        height: 60px;
-    }
-    .ItemHistoriPhone{
+    .ItemHistoriPhoneDark , .ItemHistoriPhone{
         height: 60px;
     }
     .ResultOperation {
@@ -751,21 +774,21 @@ a{
     .iconItem i {
         font-size: 13px;
     }
-    .StartOperationPhone{
+    .StartOperationPhone , .StartOperationPhoneDark{
         font-size: 13px;
     }
 }
 
 @media only screen and (max-width:320px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 235px !important;
         height: 467px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         width: 235px !important;
         height: 467px !important;
     }
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 42.184px !important;
         height: 39.699px !important;
     }
@@ -785,19 +808,19 @@ a{
     .HistoriPhoneDrop {
         width: 175px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 405px;
     }
     .iconItem i {
         font-size: 11px;
     }
-    .Result{
+    .Result , .ResultDark{
         font-size: 40px;
     }
-    .NumberOperation{
+    .NumberOperation , .NumberOperationDark{
         font-size: 13px;
     }
-    .StartOperationPhone {
+    .StartOperationPhone , .StartOperationPhoneDark {
         font-size: 13px;
     }
     .HistoriPhoneDrop {
@@ -806,20 +829,20 @@ a{
 }
 
 @media (min-width:530px) and (max-height:967px) {
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 900px;
     }
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 900px;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 70px;
         margin-bottom: 0;
     }
-    .NumberOperationDark{
+    .NumberOperation , .NumberOperationDark{
         margin-bottom: 0;
     }
-    .HistoriPhone{
+    .HistoriPhone , .HistoriPhoneDark{
         height: 809.195px;
     }
     .HistoriPhoneDrop{
@@ -828,21 +851,21 @@ a{
 }
 
 @media (min-width:530px) and (max-height:920px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 854px;
         width: 427px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 854px;
         width: 427px;
     }
     .btnCalculator{
         padding: 21px 0;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 45px;
     }
-    .ButtonCalculator{
+    .ButtonCalculator , .ButtonCalculatorDark{
         width: 76.184px;
     }
     .BtnResult{
@@ -852,29 +875,29 @@ a{
     .HistoriPhoneDrop {
         width: 304px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 773.195px;
     }
 }
 
 @media (min-width:530px) and (max-height:874px) {
-    .Calculator{
+    .Calculator , .CalculatorDark{
         padding: 0 25px 0px 25px;
         height: 822px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 822px;
     }
-    .Result{
+    .Result , .ResultDark{
         font-size: 90px;
     }
-    .NumberOperation{
+    .NumberOperation , .NumberOperationDark{
         font-size: 25px;
     }
-    .Version p {
+    .Version p , .VersionDark p {
         margin-bottom: 0;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 742.195px;
     }
 }
@@ -882,45 +905,45 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 
 @media (min-width:510px) and (max-width:529px) and (max-height:899px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 435px;
         height: 848px;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         width: 435px;
         height: 848px;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 64px;
     }
     .btnCalculator{
         padding: 18px 2px 18px 6px;
     }
-    .Version p {
+    .Version p , .VersionDark p {
         margin-bottom: 0;
     }
     .BtnResult{
         margin-right: 3px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 767.195px;
     }
 }
 @media (min-width:510px) and (max-width:529px) and (max-height:868px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 826px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 826px;
     }
     
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 76.184px !important;
         height: 64.699px !important;
     }
@@ -929,21 +952,21 @@ a{
         width: inherit !important;
         margin-right: 3px;
     }
-    .Result {
+    .Result , .ResultDark {
         margin-top: 68px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 753.195px;
     }
 }
 @media (min-width:510px) and (max-width:529px) and (max-height:846px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 805px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 805px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 729.195px;
     }
 }
@@ -951,45 +974,45 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:488px) and (max-width:509px) and (max-height:899px){
     
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 860px;
     }
     
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 860px;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 50px;
     }
     .btnCalculator {
         padding: 20px 2px 30px 15px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 779.195px;
     }
 }
 @media (min-width:488px) and (max-width:509px) and (max-height:880px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 835px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 835px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 753.195px;
     }
 }
 @media (min-width:488px) and (max-width:509px) and (max-height:855px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 825px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 825px;
     }
     .btnCalculator {
@@ -997,13 +1020,13 @@ a{
     }
 }
 @media (min-width:488px) and (max-width:509px) and (max-height:845px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 805px;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 805px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 719.195px;
     }
 }
@@ -1011,35 +1034,35 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:460px) and (max-width:487px) and (max-height:860px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 813px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 813px !important;
     }
-    .Version p {
+    .Version p , .VersionDark p {
         margin-bottom: 0;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 60px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 724.195px;
     }
 }
 @media (min-width:460px) and (max-width:487px) and (max-height:833px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 786px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 786px !important;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 50px;
     }
     .btnCalculator{
@@ -1048,21 +1071,21 @@ a{
     .HistoriPhoneDrop {
         width: 281px;
     }
-    .HistoriPhone{
+    .HistoriPhone , .HistoriPhoneDark{
         height: 706px;
     }    
 }
 @media (min-width:460px) and (max-width:487px) and (max-height:806px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 760px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 760px !important;
     }
-    .Result {
+    .Result , .ResultDark {
         margin-top: 25px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 671px;
     }
 }
@@ -1070,18 +1093,18 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:440px) and (max-width:459px) and (max-height:800px){
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 760px !important;
     }
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 760px !important;
     }
-    .Result{
+    .Result , .ResultDark{
         margin-top: 50px;
     }
     .btnCalculator {
@@ -1090,41 +1113,38 @@ a{
     .BtnResult{
         margin-right: 5px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 676.195px;
     }
-    .ItemHistoriPhoneDark {
+    .ItemHistoriPhoneDark , .ItemHistoriPhone {
         height: 89px;
-    }    
-    .ItemHistoriPhone {
-        height: 89px;
-    }    
+    }
 }
 @media (min-width:440px) and (max-width:459px) and (max-height:780px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 740px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 740px !important;
     }
-    .ButtonCalculator{
+    .ButtonCalculator , .ButtonCalculatorDark{
         height: 57.699px !important;
     }
     .btnCalculator {
         padding: 7px 3px 12px 14px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 646.195px;
     }
 }
 @media (min-width:440px) and (max-width:459px) and (max-height:760px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 718px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 718px !important;
     }
-    .Result {
+    .Result , .ResultDark {
         margin-top: 16px;
     }
 }
@@ -1132,39 +1152,39 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:421px) and (max-width:439px) and (max-height:788px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 733px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 733px !important;
     }
-    .Result {
+    .Result , .ResultDark {
         margin-top: 23px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 658.195px;
     }
     
 }
 @media (min-width:421px) and (max-width:439px) and (max-height:753px){
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 716px !important;
     }
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 716px !important;
     }
     .btnCalculator {
         padding: 20px 12px 11px 14px;
     }
-    .Version p {
+    .Version p , .VersionDark p {
         margin-bottom: 0;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 644.195px;
     }
 }
@@ -1173,20 +1193,20 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:394px) and (max-width:420px) and (max-height:675px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 319px !important;
         height: 630px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         width: 319px !important;
         height: 630px !important;
     }
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 54.184px !important;
         height: 48.699px !important;
     }
@@ -1195,49 +1215,46 @@ a{
         width: inherit !important;
         margin-right: 3px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 566px;
     }
     .HistoriPhoneDrop {
         width: 226px;
     }
-    .ItemHistoriPhoneDark {
-        height: 70px;
-    }
-    .ItemHistoriPhone{
+    .ItemHistoriPhoneDark , .ItemHistoriPhone {
         height: 70px;
     }
 }
 
 @media (min-width:394px) and (max-width:420px) and (max-height:650px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 611px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 611px !important;
     }
     .btnCalculator {
         padding: 0px 6px 12px 14px;
         font-size: 15px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 548px;
     }
 }
 @media (min-width:394px) and (max-width:420px) and (max-height:631px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 590px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 590px !important;
     }
-    .Result {
+    .Result , .ResultDark {
         margin-top: 21px;
     }
     .btnCalculator{
         padding: 0px 6px 23px 14px;
     }
-    .HistoriPhone {
+    .HistoriPhone  , .HistoriPhoneDark{
         height: 526px;
     }
 }
@@ -1246,35 +1263,35 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:359px) and (max-width:395px) and (max-height:645px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 607px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 607px !important;
     }
     .btnCalculator {
         padding: 4px 6px 20px 14px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 539px;
     }
 }
 @media (min-width:359px) and (max-width:395px) and (max-height:627px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 584px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 584px !important;
     }
-    .Result {
+    .Result , .ResultDark {
         margin-top: 28px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 518px;
     }
     .HistoriPhoneDrop {
@@ -1287,20 +1304,20 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:319px) and (max-width:360px) and (max-height:554px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         width: 246px !important;
         height: 501px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         width: 246px !important;
         height: 501px !important;
     }
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 41.184px !important;
         height: 36.699px !important;
     }
@@ -1315,7 +1332,7 @@ a{
     .iconNav i {
         font-size: 12px;
     }
-    .HistoriPhone {
+    .HistoriPhone  , .HistoriPhoneDark{
         height: 440px;
     }
     .HistoriPhoneDrop {
@@ -1323,13 +1340,13 @@ a{
     }
 }
 @media (min-width:319px) and (max-width:360px) and (max-height:521px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 476px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 476px !important;
     }
-    .ButtonCalculator {
+    .ButtonCalculator , .ButtonCalculatorDark {
         width: 41.184px !important;
         height: 36.699px !important;
     }
@@ -1342,7 +1359,7 @@ a{
         width: inherit !important;
         margin-right: 1px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 424px;
     }
     .HistoriPhoneDrop {
@@ -1353,37 +1370,37 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }
 @media (min-width:0) and (max-width:320px) and (max-height:487px){
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 455px !important;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         height: 455px !important;
         font-size: initial;
     }
-    .Version p {
+    .Version p , .VersionDark p {
         margin-bottom: 0;
         font-size: 10px;
     }
     .iconNav i {
         font-size: 12px;
     }
-    .HistoriPhone {
+    .HistoriPhone , .HistoriPhoneDark {
         height: 384px;
     }
 }
 @media (min-width:0) and (max-width:320px) and (max-height:475px){
-    .ButtonCalculator{
+    .ButtonCalculator , .ButtonCalculatorDark{
         height: 37.699px !important;
     }
-    .CalculatorPosition {
+    .CalculatorPosition ,.CalculatorPositionDark {
         height: 441px !important;
     }
-    .Calculator{
+    .Calculator , .CalculatorDark{
         height: 441px !important;
     }
 }
@@ -1391,7 +1408,7 @@ a{
     body {
         display: block;
     }
-    .CalculatorPosition{
+    .CalculatorPosition ,.CalculatorPositionDark{
         margin: 10px auto;
     }
 }

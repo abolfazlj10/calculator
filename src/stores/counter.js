@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
-import { onBeforeMount } from 'vue'
 
 export const useCounterStore = defineStore({
-  id: 'counter',
+  id: 'App',
   state: () => ({
     ResultNumberShow : 0 ,
     valueKeyUserResult : 0,
@@ -26,18 +25,25 @@ export const useCounterStore = defineStore({
     BoxDropOrClose : false ,
     classDropCalculator : false,
     HistoriSectionMobileStyleDrop : false,
+    IsDecimalToResult : null ,
+    IndexOfDecimalToResult : null ,
+    lengthDecimalResult : null ,
+    ObjectAddStartOperation : {},
   }),
 
   actions: {
 
     displayNumber (numberDis){
-      if (this.typeOperation == '+' || this.typeOperation == '-' || this.typeOperation == '*' ||this.typeOperation == '/' ||this.typeOperation == '%' ){
+      this.MaxLength = this.NumberOperation.toString().length - 1
+      if (this.typeOperation == '+' || this.typeOperation == '-' || this.typeOperation == '×' ||this.typeOperation == '÷' ||this.typeOperation == '%' ){
         if (this.valueKeyUserAfter == 0){
           this.valueKeyUserAfter = numberDis
           this.NumberOperation += numberDis
         }else {
+          if (numberDis == '.' && this.NumberOperation[this.MaxLength] == '.'){}else {
           this.valueKeyUserAfter += numberDis
           this.NumberOperation += numberDis
+          }
         }
         switch (this.typeOperation){
           case '+':
@@ -46,10 +52,10 @@ export const useCounterStore = defineStore({
           case '-':
             this.SubMission()
             break;
-          case '*':
+          case '×':
             this.Multiplication()
             break;
-          case '/':
+          case '÷':
             this.DivisionOperation()
             break;
           case '%':
@@ -61,35 +67,55 @@ export const useCounterStore = defineStore({
           this.valueKeyUserBefore = numberDis
           this.NumberOperation = numberDis
         }else {
-          this.valueKeyUserBefore += numberDis
-          this.NumberOperation += numberDis
+          if (numberDis == '.' && this.NumberOperation[this.MaxLength] == '.'){}else {
+            this.valueKeyUserBefore += numberDis
+            this.NumberOperation += numberDis
+          }
         }
       }
     },
 
     SumValueOpera(){
       this.valueKeyUserResult = Number(this.valueKeyUserBefore) + Number(this.valueKeyUserAfter)
+      this.DecimalNumber()
     },
 
     SubMission () {
       this.valueKeyUserResult = this.valueKeyUserBefore - this.valueKeyUserAfter
+      this.DecimalNumber()
     },
 
     Multiplication () {
       this.valueKeyUserResult = this.valueKeyUserBefore * this.valueKeyUserAfter
+      this.DecimalNumber()
     },
 
     DivisionOperation () {
       this.valueKeyUserResult = this.valueKeyUserBefore / this.valueKeyUserAfter
+      this.DecimalNumber()
     },
 
     PercentOperation () {
       this.valueKeyUserResult = (this.valueKeyUserBefore / 100) * this.valueKeyUserAfter
+      this.DecimalNumber()
     },
+
+    DecimalNumber(){
+      this.IsDecimalToResult = this.valueKeyUserResult.toString().includes('.')
+      if (this.IsDecimalToResult){
+        this.MaxLength = this.valueKeyUserResult.toString().length 
+        this.IndexOfDecimalToResult = this.valueKeyUserResult.toString().indexOf('.') + 1
+        this.lengthDecimalResult = this.MaxLength - this.IndexOfDecimalToResult 
+        if (this.lengthDecimalResult >= 10){
+          this.valueKeyUserResult = this.valueKeyUserResult.toFixed(8)
+        }
+      }
+    },
+
 
     OperationResult (opera){
       this.MaxLength = this.NumberOperation.length -1
-      if (this.NumberOperation[this.MaxLength] == '+' || this.NumberOperation[this.MaxLength] == '-' || this.NumberOperation[this.MaxLength] == '*' || this.NumberOperation[this.MaxLength] == '/' || this.NumberOperation[this.MaxLength] == '%'){
+      if (this.NumberOperation[this.MaxLength] == '+' || this.NumberOperation[this.MaxLength] == '-' || this.NumberOperation[this.MaxLength] == '×' || this.NumberOperation[this.MaxLength] == '÷' || this.NumberOperation[this.MaxLength] == '%' || this.NumberOperation[this.MaxLength] == '.'){
         this.NumberOperation = this.NumberOperation.toString().slice(0 , -1)
         this.NumberOperation += opera
         this.typeOperation = opera
@@ -109,7 +135,7 @@ export const useCounterStore = defineStore({
 
     BackSpaceOperation (){
       this.MaxLength = this.NumberOperation.length -1
-      if (this.NumberOperation[this.MaxLength] == '+' ||this.NumberOperation[this.MaxLength] == '-' ||this.NumberOperation[this.MaxLength] == '*' ||this.NumberOperation[this.MaxLength] == '/' ||this.NumberOperation[this.MaxLength] == '%'){
+      if (this.NumberOperation[this.MaxLength] == '+' ||this.NumberOperation[this.MaxLength] == '-' ||this.NumberOperation[this.MaxLength] == '×' ||this.NumberOperation[this.MaxLength] == '÷' ||this.NumberOperation[this.MaxLength] == '%'){
         this.NumberOperation = this.NumberOperation.toString().slice(0, -1)
         if (this.NumberOfOperation == 1 ){
           this.typeOperation = undefined
@@ -132,8 +158,8 @@ export const useCounterStore = defineStore({
     BackSpaceOperationNotOne (){
       this.indexPlus = this.NumberOperation.lastIndexOf('+')
       this.indexSubMission = this.NumberOperation.lastIndexOf('-')
-      this.indexMultiplication = this.NumberOperation.lastIndexOf('*')
-      this.indexDivision = this.NumberOperation.lastIndexOf('/')
+      this.indexMultiplication = this.NumberOperation.lastIndexOf('×')
+      this.indexDivision = this.NumberOperation.lastIndexOf('÷')
       this.indexPercent = this.NumberOperation.lastIndexOf('%')
       if (this.indexPlus > this.indexSubMission && this.indexPlus > this.indexMultiplication && this.indexPlus > this.indexDivision && this.indexPlus > this.indexPercent){
         this.indexOperation = this.indexPlus
@@ -145,11 +171,11 @@ export const useCounterStore = defineStore({
         return false
     }else if (this.indexMultiplication > this.indexPlus && this.indexMultiplication > this.indexSubMission && this.indexMultiplication > this.indexDivision && this.indexMultiplication > this.indexPercent){
         this.indexOperation = this.indexMultiplication
-        this.typeOperation = '*'
+        this.typeOperation = '×'
         return false
     }else if (this.indexDivision > this.indexPlus && this.indexDivision > this.indexSubMission && this.indexDivision > this.indexMultiplication && this.indexDivision > this.indexPercent){
         this.indexOperation = this.indexDivision
-        this.typeOperation = '/'
+        this.typeOperation = '÷'
         return false
     }else if (this.indexPercent > this.indexPlus && this.indexPercent > this.indexSubMission && this.indexPercent > this.indexMultiplication && this.indexPercent > this.indexDivision){
         this.indexOperation = this.indexPercent
@@ -169,10 +195,10 @@ export const useCounterStore = defineStore({
         case '-' : 
           this.returnBeforeOperationSum()
           break ;
-        case '*' : 
+        case '×' : 
           this.returnBeforeOperationDivision()
           break ;
-        case '/' : 
+        case '÷' : 
           this.returnBeforeOperationMultiplication()
           break ;
         case '%' : 
@@ -213,8 +239,8 @@ export const useCounterStore = defineStore({
     OperationWhithBacspace(){
       this.indexPlus = this.NumberOperation.lastIndexOf('+')
       this.indexSubMission = this.NumberOperation.lastIndexOf('-')
-      this.indexMultiplication = this.NumberOperation.lastIndexOf('*')
-      this.indexDivision = this.NumberOperation.lastIndexOf('/')
+      this.indexMultiplication = this.NumberOperation.lastIndexOf('×')
+      this.indexDivision = this.NumberOperation.lastIndexOf('÷')
       this.indexPercent = this.NumberOperation.lastIndexOf('%')
 
       this.MaxLength = this.NumberOperation.length - 1
@@ -258,6 +284,7 @@ export const useCounterStore = defineStore({
     if (this.NumberOperation == "0"){
       
     }else {
+      if (!this.HistoriSectionMobileStyleDrop){
         this.NumberOperation = 0
         this.ResultNumberShow = 0 
         this.valueKeyUserAfter = 0 
@@ -265,20 +292,23 @@ export const useCounterStore = defineStore({
         this.valueKeyUserResult = 0 
         this.typeOperation = undefined
         this.NumberOfOperation = 0
+        this.StartOperationDeciceDesktop()
+      }
     }
 
+
     if (window.innerWidth < 531){
-        this.FontsizeResultNumber1()
+      this.FontsizeResultNumber1()
     }else {
-        this.FontsizeResultNumber2()
+      this.FontsizeResultNumber2()
     } 
   },
 
   ResultOpera(){
     this.MaxLength = this.NumberOperation.length - 1
-    if (this.NumberOperation[this.MaxLength] == '+' || this.NumberOperation[this.MaxLength] == '-' || this.NumberOperation[this.MaxLength] == '*' || this.NumberOperation[this.MaxLength] == '/' || this.NumberOperation[this.MaxLength] == '%' ){
+    if (this.NumberOperation[this.MaxLength] == '+' || this.NumberOperation[this.MaxLength] == '-' || this.NumberOperation[this.MaxLength] == '×' || this.NumberOperation[this.MaxLength] == '÷' || this.NumberOperation[this.MaxLength] == '%' ){
       return false
-    }else if ( this.testoperation('-') == -1 && this.testoperation('+') == -1 && this.testoperation('*') == -1 && this.testoperation('/') == -1 && this.testoperation('%') == -1  ){
+    }else if ( this.testoperation('-') == -1 && this.testoperation('+') == -1 && this.testoperation('×') == -1 && this.testoperation('÷') == -1 && this.testoperation('%') == -1  ){
       return false 
     }else if (this.NumberOperation == '0'){
       this.NumberOperation = ''
@@ -288,7 +318,8 @@ export const useCounterStore = defineStore({
       this.valueKeyUserResult = this.valueKeyUserAfter
       this.ObjResult = {
         Result : this.ResultNumberShow ,
-        Operation :  this.NumberOperation , 
+        Operation :  this.NumberOperation ,
+        Start : ' ', 
       }
       this.HistoriOperation.unshift(this.ObjResult)
       localStorage.setItem('historiCalculator' , JSON.stringify(this.HistoriOperation))
@@ -300,11 +331,9 @@ export const useCounterStore = defineStore({
 
     }
     if (window.innerWidth < 531){
-      console.log(2);
       this.FontsizeResultNumber1()
     }else {
       this.FontsizeResultNumber2()
-      console.log(3);
     }
   } ,
 
@@ -357,10 +386,10 @@ export const useCounterStore = defineStore({
           this.OperationResult(event.key)
           break;
       case '*':
-          this.OperationResult(event.key)
+          this.OperationResult("×")
           break;
       case '/':
-          this.OperationResult(event.key)
+          this.OperationResult("÷")
           break;
       case '=':
           this.ResultOpera()
@@ -410,11 +439,15 @@ export const useCounterStore = defineStore({
     }else if (this.lengthResultNumber >= 14){
 
         this.EditFontSizeShortCut('164.976px' , '45px')
-    
+        
+      }else {
+        
+        this.EditFontSizeShortCut('164.976px' , '110px')
+
     }
   },
   FontsizeResultNumber1 (){
-    this.lengthResultNumber = this.valueKeyUserResult.toString().length
+    this.lengthResultNumber = this.ResultNumberShow.toString().length
     if (window.innerWidth < 320){
 
       this.innerWidth320() 
@@ -460,7 +493,8 @@ export const useCounterStore = defineStore({
     }
   },
   innerWidth530 (){
-
+    this.lengthResultNumber = this.ResultNumberShow.toString().length
+    
     if (this.lengthResultNumber <= 6){
         
         this.EditFontSizeShortCut('150px' , '100px')
@@ -884,12 +918,13 @@ export const useCounterStore = defineStore({
       })
       if (testSome){
         this.HistoriOperation.splice(indexRemove , 1)
+        this.CheckIsStartToHistori(indexRemove)
         localStorage.setItem('historiCalculator' , JSON.stringify(this.HistoriOperation))
         this.IsItemHistori()
       }
       
     }
-    
+
   },
 
   CopyResult (event){
@@ -1039,7 +1074,6 @@ export const useCounterStore = defineStore({
     NumHistori.forEach((Num) => {
       Num.style.opacity = '0'
     })
-    
     iconParent[0].style.opacity = '0'
     
   },
@@ -1068,6 +1102,19 @@ export const useCounterStore = defineStore({
       iconParent[0].style.opacity = '1'
     }, 800);
 
+  },
+  StartOperationDeciceDesktop (){
+    this.ObjectAddStartOperation = {
+      Start : 'Start New Operation'
+    }
+    this.HistoriOperation.unshift(this.ObjectAddStartOperation)
+    
+  },
+
+  CheckIsStartToHistori (index){
+    if ( index != 0 && this.HistoriOperation[index - 1].Start == 'Start New Operation'){
+      this.HistoriOperation.splice(index - 1 , 1)
+    }
   },
   },
 
